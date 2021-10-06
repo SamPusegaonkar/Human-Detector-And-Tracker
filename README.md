@@ -11,6 +11,13 @@ A software module for Acme's MediBot robot to detect &amp; track humans.
 - Shon Cortes
 - Sameer Pusegaonkar
 
+# Proposal Video for the project:
+Video can be found [here](https://www.youtube.com/embed/TuUaH0ptrn0):
+
+# Written Proposal:
+A 2 Page Written proposal can be found [here](https://github.com/SamPusegaonkar/Human-Detector-And-Tracker/blob/main/docs/initial/Proposal.pdf)
+
+
 # Introduction: 
 MediBot: A 4 wheeled mobile robot developed by Acme Robotics has become an essential part of all hospitals across the state. This robot travels through hallways to deliver medicines reliably to their patients. Given the drastic increase in the number of patients, nurses, doctors during pandemics & flu seasons [[1](https://ourworldindata.org/covid-hospitalizations),[2](https://www.cdc.gov/coronavirus/2019-ncov/covid-data/covidview/index.html)] this robot needs to make sure that it doesn’t get obstructed by any humans when it travels through the hallways.
 
@@ -87,12 +94,7 @@ At the end of this contract, Acme Robotics will receive a well-documented & full
 
 </p>
 
-# Proposal Video for the project:
-A video can be found [here](https://www.youtube.com/embed/TuUaH0ptrn0) or below:
-<p align = "center">
-<iframe width="560" height="315" src="https://www.youtube.com/embed/TuUaH0ptrn0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-</p>
 
 # References:
 
