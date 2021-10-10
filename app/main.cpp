@@ -4,6 +4,7 @@
 */
 
 #include <iostream>
+#include "../include/camera.h"
 
 int main() {
     return 0;
