@@ -6,6 +6,7 @@
 #include <iostream>
 #include "../include/camera.h"
 #include "../include/detector.h"
+#include "../include/obstacle.h"
 
 int main() {
     return 0;
