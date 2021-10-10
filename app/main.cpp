@@ -5,6 +5,7 @@
 
 #include <iostream>
 #include "../include/camera.h"
+#include "../include/detector.h"
 
 int main() {
     return 0;
