@@ -26,5 +26,5 @@ class Detector: public Camera {
   std::vector<int> GetBoundingBoxes(cv::Mat frame);
   std::vector<Obstacle> DefineObstacles(std::vector<int> coordinates);
   cv::Mat WriteRobotCoordinatesOnFrame(std::vector<Obstacle>, cv::Mat frame);
-  Detector::~Detector() {}
+  ~Detector() {}
 };

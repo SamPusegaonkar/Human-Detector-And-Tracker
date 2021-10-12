@@ -63,3 +63,5 @@ std::vector<Obstacle> Detector::DefineObstacles(std::vector<int> coordinates) {}
  */
 cv::Mat Detector::WriteRobotCoordinatesOnFrame(std::vector<Obstacle>,
     cv::Mat frame) {}
+
+Detector::~Detector() {}

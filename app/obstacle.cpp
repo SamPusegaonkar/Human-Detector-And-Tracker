@@ -46,3 +46,5 @@ void ComputeHorizontalPosition() {}
  */
 std::vector<Obstacle> GetRobotFrameCoordinates(std::vector<Obstacle> obstacle,
                                  std::vector<int> transformation_matrix) {}
+
+Obstacle::~Obstacle() {}
