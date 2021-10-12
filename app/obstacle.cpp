@@ -16,6 +16,7 @@
  */
 Obstacle::Obstacle() {
     std::string label_{"obstacle"};
+    int id{0};
     float camera_x_position_{0};
     float camera_z_position_{0};
     float robot_x_position_{0};
@@ -48,7 +49,7 @@ void ComputeHorizontalPosition() {}
  * @param transformation_matrix Transformation matrix to go from Camera frame to Robot frame.
  * @return std::vector<Obstacle> Detected Obstacle.
  */
-std::vector<Obstacle> GetRobotFrameCoordinates(std::vector<Obstacle> obstacle,
-                                 std::vector<int> transformation_matrix) {}
+std::vector<Obstacle> GetRobotFrameCoordinates(
+                        std::vector<int> transformation_matrix) {}
 
 Obstacle::~Obstacle() {}

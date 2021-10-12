@@ -23,7 +23,7 @@ class Obstacle {
  public:
   void ComputeDepth(float focal_length);
   void ComputeHorizontalPosition();
-  std::vector<Obstacle> GetRobotFrameCoordinates(std::vector<Obstacle> obstacle,
-   std::vector<int> transformation_matrix);
+  std::vector<Obstacle> GetRobotFrameCoordinates(
+    std::vector<int> transformation_matrix);
   ~Obstacle() {}
 };
