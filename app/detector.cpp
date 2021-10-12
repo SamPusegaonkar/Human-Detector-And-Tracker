@@ -6,6 +6,11 @@
 #include <iostream>
 #include "../include/detector.h"
 
+// TO DO: Define actual initialization values
+/**
+ * @brief Construct a new Detector:: Detector object
+ * 
+ */
 Detector::Detector() {
     float confidence_{0};
     std::string model_file_{0};

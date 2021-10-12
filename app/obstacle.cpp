@@ -10,8 +10,12 @@
 #include <string>
 #include "../include/obstacle.h"
 
+/**
+ * @brief Construct a new Obstacle:: Obstacle object
+ * 
+ */
 Obstacle::Obstacle() {
-    std::string label_{"default"};
+    std::string label_{"obstacle"};
     float camera_x_position_{0};
     float camera_z_position_{0};
     float robot_x_position_{0};

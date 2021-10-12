@@ -7,6 +7,7 @@
 #include <iostream>
 #include <vector>
 
+// TO DO: Define actual initialization values
 /**
  * @brief Construct a new Camera:: Camera object
  * 
