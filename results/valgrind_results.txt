@@ -1,0 +1,38 @@
+==10961== Memcheck, a memory error detector
+==10961== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==10961== Using Valgrind-3.13.0 and LibVEX; rerun with -h for copyright info
+==10961== Command: ./app/main
+==10961== Parent PID: 10960
+==10961== 
+==10961== Conditional jump or move depends on uninitialised value(s)
+==10961==    at 0x4F45B2A: std::ostreambuf_iterator<char, std::char_traits<char> > std::num_put<char, std::ostreambuf_iterator<char, std::char_traits<char> > >::_M_insert_int<long>(std::ostreambuf_iterator<char, std::char_traits<char> >, std::ios_base&, char, long) const (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
+==10961==    by 0x4F52074: std::ostream& std::ostream::_M_insert<long>(long) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
+==10961==    by 0x108A5E: main (in /home/luna/UMD/ENPM808X_Software_Dev_for_Robotics/Human-Detector-And-Tracker/app/main)
+==10961== 
+==10961== Use of uninitialised value of size 8
+==10961==    at 0x4F4562E: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
+==10961==    by 0x4F45B53: std::ostreambuf_iterator<char, std::char_traits<char> > std::num_put<char, std::ostreambuf_iterator<char, std::char_traits<char> > >::_M_insert_int<long>(std::ostreambuf_iterator<char, std::char_traits<char> >, std::ios_base&, char, long) const (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
+==10961==    by 0x4F52074: std::ostream& std::ostream::_M_insert<long>(long) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
+==10961==    by 0x108A5E: main (in /home/luna/UMD/ENPM808X_Software_Dev_for_Robotics/Human-Detector-And-Tracker/app/main)
+==10961== 
+==10961== Conditional jump or move depends on uninitialised value(s)
+==10961==    at 0x4F4563B: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
+==10961==    by 0x4F45B53: std::ostreambuf_iterator<char, std::char_traits<char> > std::num_put<char, std::ostreambuf_iterator<char, std::char_traits<char> > >::_M_insert_int<long>(std::ostreambuf_iterator<char, std::char_traits<char> >, std::ios_base&, char, long) const (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
+==10961==    by 0x4F52074: std::ostream& std::ostream::_M_insert<long>(long) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
+==10961==    by 0x108A5E: main (in /home/luna/UMD/ENPM808X_Software_Dev_for_Robotics/Human-Detector-And-Tracker/app/main)
+==10961== 
+==10961== Conditional jump or move depends on uninitialised value(s)
+==10961==    at 0x4F45B86: std::ostreambuf_iterator<char, std::char_traits<char> > std::num_put<char, std::ostreambuf_iterator<char, std::char_traits<char> > >::_M_insert_int<long>(std::ostreambuf_iterator<char, std::char_traits<char> >, std::ios_base&, char, long) const (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
+==10961==    by 0x4F52074: std::ostream& std::ostream::_M_insert<long>(long) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
+==10961==    by 0x108A5E: main (in /home/luna/UMD/ENPM808X_Software_Dev_for_Robotics/Human-Detector-And-Tracker/app/main)
+==10961== 
+==10961== 
+==10961== HEAP SUMMARY:
+==10961==     in use at exit: 0 bytes in 0 blocks
+==10961==   total heap usage: 2 allocs, 2 frees, 73,728 bytes allocated
+==10961== 
+==10961== All heap blocks were freed -- no leaks are possible
+==10961== 
+==10961== For counts of detected and suppressed errors, rerun with: -v
+==10961== Use --track-origins=yes to see where uninitialised values come from
+==10961== ERROR SUMMARY: 4 errors from 4 contexts (suppressed: 0 from 0)
