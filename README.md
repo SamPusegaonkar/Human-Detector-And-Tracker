@@ -2,6 +2,9 @@
 
 [![Build Status](https://app.travis-ci.com/SamPusegaonkar/Human-Detector-And-Tracker.svg?branch=main)](https://app.travis-ci.com/SamPusegaonkar/Human-Detector-And-Tracker)
 [![Coverage Status](https://coveralls.io/repos/github/SamPusegaonkar/Human-Detector-And-Tracker/badge.svg?branch=main)](https://coveralls.io/github/SamPusegaonkar/Human-Detector-And-Tracker?branch=main)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
+
+
 ---
 
 A software module for Acme's MediBot robot to detect &amp; track humans. 
