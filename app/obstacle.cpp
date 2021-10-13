@@ -3,11 +3,11 @@
  *  Shon Cortes & Sameer Pusegaonkar
 */
 
-#pragma once
-
 #include <iostream>
 #include <vector>
 #include <string>
+#include <numeric>
+#include <xtensor-blas/xlinalg.hpp>
 #include "../include/obstacle.h"
 
 /**
@@ -45,11 +45,19 @@ void ComputeHorizontalPosition() {}
 /**
  * @brief Get the objects position in the Robot Frame.
  * 
- * @param obstacle 
  * @param transformation_matrix Transformation matrix to go from Camera frame to Robot frame.
- * @return std::vector<Obstacle> Detected Obstacle.
+ * @return std::vector<float> Detected Obstacle.
  */
-std::vector<Obstacle> GetRobotFrameCoordinates(
-                        std::vector<int> transformation_matrix) {}
+std::vector<float> Obstacle::GetRobotFrameCoordinates(
+        std::vector<std::vector< float> > transformation_matrix) {
+    std::vector<float> position{
+        {camera_x_position_},
+        {0},
+        {camera_z_position_},
+        {1}};
+    std::vector<float> pos_in_rframe = xt::linalg::dot(
+        transformation_matrix,
+        position);
+}
 
 Obstacle::~Obstacle() {}
