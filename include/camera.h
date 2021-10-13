@@ -13,8 +13,9 @@ class Camera {
   int fps_;
   float horizontal_fov_;
   float focal_length_;
-  std::vector<std::vector<int>> _transformation_matrix;
+  std::vector<std::vector<double> > _transformation_matrix;
 
  public:
+  friend class Detector;
   ~Camera() {}
 };

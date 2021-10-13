@@ -17,7 +17,7 @@ Camera::Camera() {
   float horizontal_fov_{0};
   float focal_length_{0};
   // Transformation matrix to go from camera to robot frame
-  std::vector<std::vector< float> > _transformation_matrix{
+  std::vector<std::vector<double> > _transformation_matrix{
           {0.0, 0.0, -1.0, 0.5},
           {-1.0, 0.0, 0.0, 0.0},
           {0.0, -1.0, 0.0, 0.5},
