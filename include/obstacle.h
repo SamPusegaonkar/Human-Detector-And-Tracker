@@ -21,9 +21,24 @@ class Obstacle {
   int obstacle_height_;
 
  public:
+ /**
+ * @brief Construct a new Obstacle:: Obstacle object
+ * 
+ */
+Obstacle() {
+    std::string label_{"obstacle"};
+    int id{0};
+    float camera_x_position_{0};
+    float camera_z_position_{0};
+    float robot_x_position_{0};
+    float robot_y_position_{0};
+    float human_height_{0};
+    int obstacle_width_{0};
+    int obstacle_height_{0};
+}
   void ComputeDepth(float focal_length);
   void ComputeHorizontalPosition();
-  std::vector<float> GetRobotFrameCoordinates(
-    std::vector<std::vector< float> > transformation_matrix);
+  std::vector<double> GetRobotFrameCoordinates(
+    std::vector<std::vector<double> > transformation_matrix);
   ~Obstacle() {}
 };

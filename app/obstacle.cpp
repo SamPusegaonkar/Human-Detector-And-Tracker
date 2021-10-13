@@ -7,24 +7,10 @@
 #include <vector>
 #include <string>
 #include <numeric>
-#include <xtensor-blas/xlinalg.hpp>
 #include "../include/obstacle.h"
+#include <eigen3/Eigen/Dense>
 
-/**
- * @brief Construct a new Obstacle:: Obstacle object
- * 
- */
-Obstacle::Obstacle() {
-    std::string label_{"obstacle"};
-    int id{0};
-    float camera_x_position_{0};
-    float camera_z_position_{0};
-    float robot_x_position_{0};
-    float robot_y_position_{0};
-    float human_height_{0};
-    int obstacle_width_{0};
-    int obstacle_height_{0};
-}
+
 
 // TO DO: Add detailed info on class method.
 /**
@@ -32,14 +18,14 @@ Obstacle::Obstacle() {
  * 
  * @param focal_length Focal length of camera.
  */
-void ComputeDepth(float focal_length) {}
+void Obstacle::ComputeDepth(float focal_length) {}
 
 // TO DO: Add detailed info on class method.
 /**
  * @brief Compute the horizontal position of object with respect to the camera frame.
  * 
  */
-void ComputeHorizontalPosition() {}
+void Obstacle::ComputeHorizontalPosition() {}
 
 // TO DO: Add detailed info on class method.
 /**
@@ -48,16 +34,42 @@ void ComputeHorizontalPosition() {}
  * @param transformation_matrix Transformation matrix to go from Camera frame to Robot frame.
  * @return std::vector<float> Detected Obstacle.
  */
-std::vector<float> Obstacle::GetRobotFrameCoordinates(
-        std::vector<std::vector< float> > transformation_matrix) {
-    std::vector<float> position{
+std::vector<double> Obstacle::GetRobotFrameCoordinates(
+        std::vector<std::vector< double> > transformation_matrix) {
+    // Position of Obstacle in Camera frame
+    camera_z_position_ = -2;
+    camera_x_position_ = 3;
+    Eigen::Matrix<double, 4, 1> position{
         {camera_x_position_},
         {0},
         {camera_z_position_},
         {1}};
-    std::vector<float> pos_in_rframe = xt::linalg::dot(
-        transformation_matrix,
-        position);
+
+    Eigen::MatrixXd transform(transformation_matrix.size(),
+        transformation_matrix[0].size());
+    for (int i = 0; i < transformation_matrix.size(); ++i)
+        transform.row(i) = Eigen::VectorXd::Map(&transformation_matrix[i][0],
+            transformation_matrix[0].size());
+
+    auto pos_in_rframe_v = transform * position;
+    robot_x_position_ = pos_in_rframe_v[0];
+    robot_y_position_ = pos_in_rframe_v[1];
+    std::vector<double> pos_in_rframe{robot_x_position_, robot_y_position_};
+
+    return pos_in_rframe;
 }
 
-Obstacle::~Obstacle() {}
+
+int main() {
+    Obstacle o;
+    std::vector<std::vector< double> > transformation_matrix{
+          {0.0, 0.0, -1.0, 0.5},
+          {-1.0, 0.0, 0.0, 0.0},
+          {0.0, -1.0, 0.0, 0.5},
+          {0.0, 0.0, 0.0, 1.0}};
+
+    std::vector<double> pos = o.GetRobotFrameCoordinates(transformation_matrix);
+    std::cout<<pos[0]<<std::endl;
+    std::cout<<pos[1]<<std::endl;
+    // std::cout<<pos[2]<<std::endl;
+}
