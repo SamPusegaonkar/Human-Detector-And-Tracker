@@ -14,7 +14,7 @@ message( [opencv] ${OpenCV_INCLUDE_DIRS} )
 message( [opencv] ${${OpenCV_LIBS}} )
 message( [opencv] ${${OpenCV_LIBRARIES}} )
 
-# Include Eigan
+# Include Eigen
 find_package(Eigen3 3.3 REQUIRED NO_MODULE)
 INCLUDE_DIRECTORIES($ENV{EIGEN3_INCLUDE_DIR})
 
