@@ -46,9 +46,9 @@ An initial UML activity and class diagram, [Fig. 3, 4], has been made outlining 
 <p align = "center">
 
 
-<img src="./UML/initial/ClassDiagram.png" alt="Logo"/>
+<img src="./UML/revised10_13_2021/ClassDiagram.png" alt="Logo"/>
 
-<img src="./UML/initial/ActivityDiagram.png" alt="Logo"/>
+<img src="./UML/revised10_13_2021/ActivityDiagram.png" alt="Logo"/>
 
 <p align = "center"><em>Figure 3. Class Diagram - On the left</em>
 
