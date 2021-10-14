@@ -20,8 +20,8 @@ matrix:
             - cmake-data
       env: COMPILER=g++-5
 
-#For OpenCV installation
 before_script:
+# For OpenCV installation
   - git clone https://github.com/opencv/opencv.git
   - cd opencv
   - git checkout 4.0.0
@@ -40,6 +40,18 @@ before_script:
   - sudo make install
   - sudo sh -c 'echo "/usr/local/lib" >> /etc/ld.so.conf.d/opencv.conf'
   - sudo ldconfig
+
+  - cd ../../
+
+  # For Eigen installation
+  - git clone https://gitlab.com/libeigen/eigen.git
+  - cd eigen
+
+  - rm -rf build/
+  - mkdir build
+  - cd build
+  - cmake ..
+  - make
 
   - cd ../../
   
