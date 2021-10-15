@@ -1,7 +1,13 @@
-/** Copyright 2021
- *  @Authors
- *  Shon Cortes & Sameer Pusegaonkar
-*/
+/**
+ * @file detector.h
+ * @author Shon Cortes & Sameer Pusegaonkar
+ * @brief Detector class used to process video feed and detect/track obstacles
+ * @version 0.1
+ * @date 2021-10-14
+ * 
+ * @copyright Copyright (c) 2021
+ * 
+ */
 
 #pragma once
 

@@ -1,7 +1,13 @@
-/** Copyright 2021
- *  @Authors
- *  Shon Cortes & Sameer Pusegaonkar
-*/
+/**
+ * @file camera.h
+ * @author Shon Cortes & Sameer Pusegaonkar
+ * @brief Camera class used to store camera parameters
+ * @version 0.1
+ * @date 2021-10-14
+ * 
+ * @copyright Copyright (c) 2021
+ * 
+ */
 
 #pragma once
 
