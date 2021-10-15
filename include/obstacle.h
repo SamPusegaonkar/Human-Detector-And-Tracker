@@ -12,6 +12,7 @@
 class Obstacle {
  private:
   std::string label_;
+  int id;
   float camera_x_position_;
   float camera_z_position_;
   float robot_x_position_;
@@ -25,16 +26,15 @@ class Obstacle {
  * @brief Construct a new Obstacle:: Obstacle object
  * 
  */
-Obstacle() {
-    std::string label_{"obstacle"};
-    int id{0};
-    float camera_x_position_{0};
-    float camera_z_position_{0};
-    float robot_x_position_{0};
-    float robot_y_position_{0};
-    float human_height_{0};
-    int obstacle_width_{0};
-    int obstacle_height_{0};
+Obstacle() : label_("obstacle"),
+    id{0},
+    camera_x_position_{0.0f},
+    camera_z_position_{0.0f},
+    robot_x_position_{0.0f},
+    robot_y_position_{0.0f},
+    human_height_{0.0f},
+    obstacle_width_{0},
+    obstacle_height_{0} {
 }
   void ComputeDepth(float focal_length);
   void ComputeHorizontalPosition();
