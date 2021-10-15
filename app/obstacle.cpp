@@ -1,16 +1,20 @@
-/** Copyright 2021
- *  @Authors
- *  Shon Cortes & Sameer Pusegaonkar
-*/
+/**
+ * @file obstacle.cpp
+ * @author Shon Cortes & Sameer Pusegaonkar
+ * @brief Obstacle class used to store detected obstacle positions
+ * @version 0.1
+ * @date 2021-10-14
+ * 
+ * @copyright Copyright (c) 2021
+ * 
+ */
 
+#include <eigen3/Eigen/Dense>
 #include <iostream>
 #include <vector>
 #include <string>
 #include <numeric>
 #include "../include/obstacle.h"
-#include <eigen3/Eigen/Dense>
-
-
 
 // TO DO: Add detailed info on class method.
 /**
@@ -27,7 +31,6 @@ void Obstacle::ComputeDepth(float focal_length) {}
  */
 void Obstacle::ComputeHorizontalPosition() {}
 
-// TO DO: Add detailed info on class method.
 /**
  * @brief Get the objects position in the Robot Frame.
  * 
@@ -37,8 +40,6 @@ void Obstacle::ComputeHorizontalPosition() {}
 std::vector<double> Obstacle::GetRobotFrameCoordinates(
         std::vector<std::vector< double> > transformation_matrix) {
     // Position of Obstacle in Camera frame
-    camera_z_position_ = -2;
-    camera_x_position_ = 3;
     Eigen::Matrix<double, 4, 1> position{
         {camera_x_position_},
         {0},
