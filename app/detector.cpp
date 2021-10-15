@@ -4,14 +4,16 @@
 */
 
 #include <iostream>
+
+#include "../include/camera.h"
 #include "../include/detector.h"
 
 Detector::Detector() {
-    float confidence_{0};
-    std::string model_file_{0};
-    std::string classes_{0};
-    std::vector<float> trackers_{0};
-    Camera cam_;
+  float confidence_{0};
+  std::string model_file_{0};
+  std::string classes_{0};
+  std::vector<float> trackers_{0};
+  Camera* cam_ = new Camera();
 }
 
 
@@ -24,14 +26,19 @@ Detector::Detector() {
  * @return true 
  * @return false 
  */
-bool Detector::LoadModel(std::string file_name) {}
+bool Detector::LoadModel(std::string file_name) {
 
-// TO DO: Add detailed info on class method.
-/**
+/**LoadModel
  * @brief Process video feed and call the necessary functions to detect and track obstacles 
  * while returning their position in the robot frame.
  * 
  */
+  std::string model_file_binary = file_name + ".caffemodel";
+  std::string model_file_text = file_name + ".prototxt";
+  auto net = cv::dnn::readNetFromCaffe(model_file_text, model_file_binary);
+  return true;
+}
+
 void Detector::Detect() {}
 
 // TO DO: Add detailed info on class method.
