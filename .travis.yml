@@ -44,17 +44,11 @@ before_script:
   - cd ../../
 
   # For Eigen installation
-  - git clone https://gitlab.com/libeigen/eigen.git
-  - cd eigen
-
-  - rm -rf build/
+  - sudo apt-get install libeigen3-dev
   - mkdir build
   - cd build
   - cmake ..
-  - make
 
-  - cd ../../
-  
 before_install:
   - pip install --user cpp-coveralls
 install:

@@ -15,8 +15,8 @@ message( [opencv] ${${OpenCV_LIBS}} )
 message( [opencv] ${${OpenCV_LIBRARIES}} )
 
 # Include Eigen
-find_package(Eigen3 3.3 REQUIRED NO_MODULE)
-INCLUDE_DIRECTORIES($ENV{EIGEN3_INCLUDE_DIR})
+find_package(Eigen3 REQUIRED)
+INCLUDE_DIRECTORIES(${EIGEN3_INCLUDE_DIR})
 
 # We probably don't want this to run on every build.
 option(COVERAGE "Generate Coverage Data" OFF)
