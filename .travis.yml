@@ -45,9 +45,11 @@ before_script:
 
   # For Eigen installation
   - sudo apt-get install libeigen3-dev
-  - mkdir build
-  - cd build
-  - cmake ..
+  # - mkdir build
+  # - cd build
+  # - cmake ..
+  # - make
+  # - cd ../
 
 before_install:
   - pip install --user cpp-coveralls
@@ -58,7 +60,6 @@ script:
   - mkdir build
   - cd build
   - cmake -DCOVERAGE=ON -DCMAKE_BUILD_TYPE=Debug ../
-  - ./configure
   - make
   - make code_coverage
   - test/cpp-test
