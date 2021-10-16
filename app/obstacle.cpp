@@ -63,17 +63,3 @@ std::vector<double> Obstacle::GetRobotFrameCoordinates(
 
     return pos_in_rframe;
 }
-
-
-// int main() {
-//     Obstacle o;
-//     std::vector<std::vector< double> > transformation_matrix{
-//           {0.0, 0.0, -1.0, 0.5},
-//           {-1.0, 0.0, 0.0, 0.0},
-//           {0.0, -1.0, 0.0, 0.5},
-//           {0.0, 0.0, 0.0, 1.0}};
-
-//     std::vector<double> pos = o.GetRobotFrameCoordinates(transformation_matrix);
-//     std::cout << pos[0] << std::endl;
-//     std::cout << pos[1] << std::endl;
-// }
