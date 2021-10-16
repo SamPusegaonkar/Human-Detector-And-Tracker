@@ -4,6 +4,20 @@ project (scratch)
 # Add project cmake modules to path.
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${PROJECT_SOURCE_DIR}/cmake)
 
+# Import opencv 
+find_package(OpenCV 4.0.0 REQUIRED)
+#include opencv directories
+include_directories(${OpenCV_INCLUDE_DIRS})
+
+# Display opencv include directory
+message( [opencv] ${OpenCV_INCLUDE_DIRS} )
+message( [opencv] ${${OpenCV_LIBS}} )
+message( [opencv] ${${OpenCV_LIBRARIES}} )
+
+# Include Eigen
+find_package(Eigen3 REQUIRED)
+INCLUDE_DIRECTORIES(${EIGEN3_INCLUDE_DIR})
+
 # We probably don't want this to run on every build.
 option(COVERAGE "Generate Coverage Data" OFF)
 

@@ -1,7 +1,13 @@
-/** Copyright 2021
- *  @Authors
- *  Shon Cortes & Sameer Pusegaonkar
-*/
+/**
+ * @file detector.h
+ * @author Shon Cortes & Sameer Pusegaonkar
+ * @brief Detector class used to process video feed and detect/track obstacles
+ * @version 0.1
+ * @date 2021-10-14
+ * 
+ * @copyright Copyright (c) 2021
+ * 
+ */
 
 #pragma once
 
@@ -21,10 +27,22 @@ class Detector: public Camera {
   Camera cam_;
 
  public:
+  // TO DO: Define actual initialization values
+  /**
+   * @brief Construct a new Detector:: Detector object
+   * 
+   */
+  Detector() {
+      float confidence_{0};
+      std::string model_file_{0};
+      std::string classes_{0};
+      std::vector<float> trackers_{0};
+      Camera cam_;
+  }
   bool LoadModel(std::string file_name);
   void Detect();
   std::vector<int> GetBoundingBoxes(cv::Mat frame);
   std::vector<Obstacle> DefineObstacles(std::vector<int> coordinates);
   cv::Mat WriteRobotCoordinatesOnFrame(std::vector<Obstacle>, cv::Mat frame);
-  Detector::~Detector() {}
+  ~Detector() {}
 };
