@@ -36,6 +36,8 @@ Obstacle() : label_("obstacle"),
     obstacle_width_{0},
     obstacle_height_{0} {
 }
+  void SetObstacleWidth(int width);
+  void SetObstacleHeight(int height);
   void ComputeDepth(float focal_length);
   void ComputeHorizontalPosition();
   std::vector<double> GetRobotFrameCoordinates(

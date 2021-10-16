@@ -16,6 +16,24 @@
 #include <numeric>
 #include "../include/obstacle.h"
 
+/**
+ * @brief Setter for obstacle width
+ * 
+ * @param width Width of obstacle bounding box
+ */
+void Obstacle::SetObstacleWidth(int width) {
+    obstacle_width_ = width;
+}
+
+/**
+ * @brief Setter for obstacle height
+ * 
+ * @param height Height for obstacle bounding box
+ */
+void Obstacle::SetObstacleHeight(int height) {
+    obstacle_height_ = height;
+}
+
 // TO DO: Add detailed info on class method.
 /**
  * @brief Compute the obstacle distance with respect to the camera frame.
