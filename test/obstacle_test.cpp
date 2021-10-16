@@ -14,7 +14,7 @@
 
 /**
  * @brief Test the transformation for the obstacle position 
- * from the camera frame to the robot frame
+ * from the camera frame (0, 0) to the robot frame (0.5, 0.5)
  * 
  */
 TEST(Obstacle_Test, position_in_robot_frame) {
