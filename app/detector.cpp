@@ -27,7 +27,6 @@ Detector::Detector() {
  * @return false 
  */
 bool Detector::LoadModel(std::string file_name) {
-
 /**LoadModel
  * @brief Process video feed and call the necessary functions to detect and track obstacles 
  * while returning their position in the robot frame.
@@ -39,15 +38,32 @@ bool Detector::LoadModel(std::string file_name) {
   return true;
 }
 
-void Detector::Detect() {}
-
-// TO DO: Add detailed info on class method.
 /**
  * @brief Return a vector containing all detected obstacles.
  * 
  * @param frame Video frame being processed.
  * @return std::vector<int> Vector containing all detected obstacles.
  */
+void Detector::Detect() {
+  cv::VideoCapture cap;
+  cap.open(0);
+  if ( !cap.isOpened() ) {
+    std::cout << "CANNOT OPEN CAM" << std::endl;
+    return;
+  }
+  cv::Mat img;
+  while ( true ) {
+    cap >> img;
+    resize(img, img, cv::Size(300, 300));
+    cv::Mat inputBlob = cv::dnn::blobFromImage(img, 0.007843,
+    cv::Size(300, 300),
+    cv::Scalar(127.5, 127.5, 127.5), false);
+    cv::imshow("Video Feed", img);
+    if (cv::waitKey(10) == 27) break;
+  }
+}
+
+
 std::vector<int> Detector::GetBoundingBoxes(cv::Mat frame) {}
 
 // TO DO: Add detailed info on class method.
