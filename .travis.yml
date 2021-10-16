@@ -45,11 +45,6 @@ before_script:
 
   # For Eigen installation
   - sudo apt-get install libeigen3-dev
-  # - mkdir build
-  # - cd build
-  # - cmake ..
-  # - make
-  # - cd ../
 
 before_install:
   - pip install --user cpp-coveralls
