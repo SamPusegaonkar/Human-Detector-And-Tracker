@@ -22,14 +22,18 @@
  * 
  * @param focal_length Focal length of camera.
  */
-void Obstacle::ComputeDepth(float focal_length) {}
+void Obstacle::ComputeDepth(float focal_length) {
+    camera_z_position_ = 0;
+}
 
 // TO DO: Add detailed info on class method.
 /**
  * @brief Compute the horizontal position of object with respect to the camera frame.
  * 
  */
-void Obstacle::ComputeHorizontalPosition() {}
+void Obstacle::ComputeHorizontalPosition() {
+    camera_x_position_ = 0;
+}
 
 /**
  * @brief Get the objects position in the Robot Frame.
@@ -61,15 +65,15 @@ std::vector<double> Obstacle::GetRobotFrameCoordinates(
 }
 
 
-int main() {
-    Obstacle o;
-    std::vector<std::vector< double> > transformation_matrix{
-          {0.0, 0.0, -1.0, 0.5},
-          {-1.0, 0.0, 0.0, 0.0},
-          {0.0, -1.0, 0.0, 0.5},
-          {0.0, 0.0, 0.0, 1.0}};
+// int main() {
+//     Obstacle o;
+//     std::vector<std::vector< double> > transformation_matrix{
+//           {0.0, 0.0, -1.0, 0.5},
+//           {-1.0, 0.0, 0.0, 0.0},
+//           {0.0, -1.0, 0.0, 0.5},
+//           {0.0, 0.0, 0.0, 1.0}};
 
-    std::vector<double> pos = o.GetRobotFrameCoordinates(transformation_matrix);
-    // std::cout<<pos[0]<<std::endl;
-    // std::cout<<pos[1]<<std::endl;
-}
+//     std::vector<double> pos = o.GetRobotFrameCoordinates(transformation_matrix);
+//     std::cout << pos[0] << std::endl;
+//     std::cout << pos[1] << std::endl;
+// }

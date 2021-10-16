@@ -25,11 +25,16 @@ TEST(Obstacle_Test, position_in_robot_frame) {
           {0.0, 0.0, 0.0, 1.0}};
 
     Obstacle pos_test_obstacle;
-    float focal_length{30};
-    pos_test_obstacle.ComputeDepth(focal_length);
-    pos_test_obstacle.ComputeHorizontalPosition();
+    // float focal_length{30};
+    // pos_test_obstacle.ComputeDepth(focal_length);
+    // pos_test_obstacle.ComputeHorizontalPosition();
+
     // std::vector<double> expected_pos{2.5, -3};
-    std::vector<double> expected_pos{0.5, 0.5};
-    EXPECT_EQ(expected_pos,
-        pos_test_obstacle.GetRobotFrameCoordinates(transformation_matrix));
+    std::vector<double> expected_pos{0.5, 0.0};  // (x, y)
+    std::vector<double> pos = pos_test_obstacle.GetRobotFrameCoordinates(
+        transformation_matrix);
+
+    for (int i = 0; i < pos.size(); i++) {
+        EXPECT_DOUBLE_EQ(expected_pos[i], pos[i]);
+    }
 }

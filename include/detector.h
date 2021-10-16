@@ -27,6 +27,18 @@ class Detector: public Camera {
   Camera cam_;
 
  public:
+  // TO DO: Define actual initialization values
+  /**
+   * @brief Construct a new Detector:: Detector object
+   * 
+   */
+  Detector() {
+      float confidence_{0};
+      std::string model_file_{0};
+      std::string classes_{0};
+      std::vector<float> trackers_{0};
+      Camera cam_;
+  }
   bool LoadModel(std::string file_name);
   void Detect();
   std::vector<int> GetBoundingBoxes(cv::Mat frame);

@@ -6,22 +6,7 @@
 #include <iostream>
 #include "../include/detector.h"
 
-// TO DO: Define actual initialization values
-/**
- * @brief Construct a new Detector:: Detector object
- * 
- */
-Detector::Detector() {
-    float confidence_{0};
-    std::string model_file_{0};
-    std::string classes_{0};
-    std::vector<float> trackers_{0};
-    Camera cam_;
-}
-
-
 // TO DO: Add detailed info on class method.
-
 /**
  * @brief Load the human detection model.
  * 
@@ -68,5 +53,3 @@ std::vector<Obstacle> Detector::DefineObstacles(std::vector<int> coordinates) {}
  */
 cv::Mat Detector::WriteRobotCoordinatesOnFrame(std::vector<Obstacle>,
     cv::Mat frame) {}
-
-Detector::~Detector() {}
