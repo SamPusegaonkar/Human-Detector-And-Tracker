@@ -3,19 +3,20 @@
  *  Shon Cortes & Sameer Pusegaonkar
 */
 
+#include "../include/detector.h"
+
 #include <iostream>
 
 #include "../include/camera.h"
-#include "../include/detector.h"
 
 Detector::Detector() {
-  float confidence_{0};
-  std::string model_file_{0};
-  std::string classes_{0};
-  std::vector<float> trackers_{0};
-  Camera* cam_ = new Camera();
+    float confidence_{0};
+    std::string model_file_{0};
+    std::string classes_{0};
+    std::vector<float> trackers_{0};
+    cv::dnn::Net model;
+    Camera cam_;
 }
-
 
 // TO DO: Add detailed info on class method.
 
@@ -27,15 +28,15 @@ Detector::Detector() {
  * @return false 
  */
 bool Detector::LoadModel(std::string file_name) {
-/**LoadModel
+    /**LoadModel
  * @brief Process video feed and call the necessary functions to detect and track obstacles 
  * while returning their position in the robot frame.
  * 
  */
-  std::string model_file_binary = file_name + ".caffemodel";
-  std::string model_file_text = file_name + ".prototxt";
-  auto net = cv::dnn::readNetFromCaffe(model_file_text, model_file_binary);
-  return true;
+    std::string model_file_binary = file_name + ".caffemodel";
+    std::string model_file_text = file_name + ".prototxt";
+    auto model = cv::dnn::readNetFromCaffe(model_file_text, model_file_binary);
+    return true;
 }
 
 /**
@@ -45,35 +46,93 @@ bool Detector::LoadModel(std::string file_name) {
  * @return std::vector<int> Vector containing all detected obstacles.
  */
 void Detector::Detect() {
-  cv::VideoCapture cap;
-  cap.open(0);
-  if ( !cap.isOpened() ) {
-    std::cout << "CANNOT OPEN CAM" << std::endl;
-    return;
-  }
-  cv::Mat img;
-  while ( true ) {
-    cap >> img;
-    resize(img, img, cv::Size(300, 300));
-    cv::Mat inputBlob = cv::dnn::blobFromImage(img, 0.007843,
-    cv::Size(300, 300),
-    cv::Scalar(127.5, 127.5, 127.5), false);
-    cv::imshow("Video Feed", img);
-    if (cv::waitKey(10) == 27) break;
-  }
+    cv::VideoCapture cap;
+    cap.open(0);
+    if (!cap.isOpened()) {
+        std::cout << "CANNOT OPEN CAM" << std::endl;
+        return;
+    }
+
+
+    cv::Mat img;
+    while (true) {
+        cap >> img;
+
+        auto detections = this->GetBoundingBoxes(img);
+
+        for ( auto detection : detections ) {
+          int box_x = detection[0];
+          int box_y = detection[1];
+          int box_width = detection[2];
+          int box_height = detection[3];
+          cv::rectangle(img, cv::Point(box_x, box_y),
+            cv::Point(box_x + box_width, box_y + box_height),
+            cv::Scalar(255, 255, 255), 2);
+          cv::putText(img, "a", cv::Point(box_x, box_y - 5),
+            cv::FONT_HERSHEY_SIMPLEX, 0.5, cv::Scalar(0, 255, 255), 1);
+        }
+
+        cv::imshow("image", img);
+        int k = cv::waitKey(10);
+        if (k == 113) {
+            break;
+        }
+    }
+
+    cap.release();
+    cv::destroyAllWindows();
 }
 
-
-std::vector<int> Detector::GetBoundingBoxes(cv::Mat frame) {}
-
-// TO DO: Add detailed info on class method.
 /**
  * @brief Creates an Obstacle instance for each obstacle detected.
  * 
- * @param coordinates Bounding box coordinates to be used in 
+ * @param coordinstart webcam &ates Bounding box coordinates to be used in 
  * calculating the obstacle position in the Camera frame.
  * @return std::vector<Obstacle> A vector of Obstacle instances.
  */
+std::vector<std::vector<int>> Detector::GetBoundingBoxes(cv::Mat img) {
+  auto model =
+    cv::dnn::readNetFromCaffe("../model_files/MobileNetSSD_deploy.prototxt",
+    "../model_files/MobileNetSSD_deploy.caffemodel");
+
+  std::vector<std::vector<int>> detections;
+  int image_height = img.cols;
+  int image_width = img.rows;
+  //  create blob from image
+  auto blob = cv::dnn::blobFromImage(img, 0.007843,
+    cv::Size(300, 300),
+    cv::Scalar(127.5, 127.5, 127.5),
+    true, false);
+
+  //  create blob from image
+  model.setInput(blob);
+
+  // //  forward pass through the model to carry out the detection
+  cv::Mat output = model.forward();
+
+  cv::Mat detectionMat(output.size[2], output.size[3],
+    CV_32F, output.ptr<float>());
+
+  for (int i = 0; i < detectionMat.rows; i++) {
+    int class_id = detectionMat.at<float>(i, 1);
+    float confidence = detectionMat.at<float>(i, 2);
+
+    // Check if the detection is of good quality
+    if (confidence > 0.4) {
+      int box_x = static_cast<int>
+        (detectionMat.at<float>(i, 3) * img.cols);
+      int box_y = static_cast<int>
+        (detectionMat.at<float>(i, 4) * img.rows);
+      int box_width = static_cast<int>
+        (detectionMat.at<float>(i, 5) * img.cols - box_x);
+      int box_height = static_cast<int>
+        (detectionMat.at<float>(i, 6) * img.rows - box_y);
+      detections.push_back({box_x, box_y, box_width, box_height});
+    }
+  }
+  return detections;
+}
+
 std::vector<Obstacle> Detector::DefineObstacles(std::vector<int> coordinates) {}
 
 // TO DO: Add detailed info on class method.
@@ -85,4 +144,4 @@ std::vector<Obstacle> Detector::DefineObstacles(std::vector<int> coordinates) {}
  * @return cv::Mat Video frame with coordinates displayed.
  */
 cv::Mat Detector::WriteRobotCoordinatesOnFrame(std::vector<Obstacle>,
-    cv::Mat frame) {}
+                                               cv::Mat frame) {}
