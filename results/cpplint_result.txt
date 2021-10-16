@@ -6,5 +6,4 @@ Done processing ./include/camera.h
 Done processing ./include/detector.h
 Done processing ./include/obstacle.h
 Done processing ./test/main.cpp
-Done processing ./test/test.cpp
-Total errors found: 6
+Done processing ./test/obstacle_test.cpp
