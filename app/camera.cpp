@@ -17,4 +17,6 @@ Camera::Camera() {
   float focal_length_{0};
   // TO DO: Create transformation matrix to go from Camera frame to Robot frame.
   std::vector<std::vector<int>> _transformation_matrix{0};
-  }
+}
+
+Camera::~Camera() {}

@@ -16,5 +16,6 @@ class Camera {
   std::vector<std::vector<int>> _transformation_matrix;
 
  public:
-  Camera::~Camera() {}
+  Camera();
+  ~Camera();
 };

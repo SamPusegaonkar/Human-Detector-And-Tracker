@@ -9,5 +9,9 @@
 #include "../include/obstacle.h"
 
 int main() {
+    auto d = new Detector();
+    // std::string file_name = "../model_files/MobileNetSSD_deploy";
+    // d->LoadModel(file_name);
+    d->Detect();
     return 0;
 }

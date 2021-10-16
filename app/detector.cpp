@@ -10,12 +10,11 @@
 #include "../include/camera.h"
 
 Detector::Detector() {
-    float confidence_{0};
-    std::string model_file_{0};
-    std::string classes_{0};
-    std::vector<float> trackers_{0};
-    cv::dnn::Net model;
-    Camera cam_;
+  float confidence_{0};
+  std::string model_file_{0};
+  std::string classes_{0};
+  std::vector<float> trackers_{0};
+  Camera cam_;
 }
 
 // TO DO: Add detailed info on class method.
@@ -28,15 +27,15 @@ Detector::Detector() {
  * @return false 
  */
 bool Detector::LoadModel(std::string file_name) {
-    /**LoadModel
+/**LoadModel
  * @brief Process video feed and call the necessary functions to detect and track obstacles 
  * while returning their position in the robot frame.
  * 
  */
-    std::string model_file_binary = file_name + ".caffemodel";
-    std::string model_file_text = file_name + ".prototxt";
-    auto model = cv::dnn::readNetFromCaffe(model_file_text, model_file_binary);
-    return true;
+  std::string model_file_binary = file_name + ".caffemodel";
+  std::string model_file_text = file_name + ".prototxt";
+  auto model = cv::dnn::readNetFromCaffe(model_file_text, model_file_binary);
+  return true;
 }
 
 /**
@@ -46,41 +45,39 @@ bool Detector::LoadModel(std::string file_name) {
  * @return std::vector<int> Vector containing all detected obstacles.
  */
 void Detector::Detect() {
-    cv::VideoCapture cap;
-    cap.open(0);
-    if (!cap.isOpened()) {
-        std::cout << "CANNOT OPEN CAM" << std::endl;
-        return;
+  cv::VideoCapture cap;
+  cap.open(0);
+  if (!cap.isOpened()) {
+      std::cout << "CANNOT OPEN CAM" << std::endl;
+      return;
+  }
+  cv::Mat img;
+  while (true) {
+    cap >> img;
+
+    auto detections = this->GetBoundingBoxes(img);
+
+    for ( auto detection : detections ) {
+      int box_x = detection[0];
+      int box_y = detection[1];
+      int box_width = detection[2];
+      int box_height = detection[3];
+      cv::rectangle(img, cv::Point(box_x, box_y),
+        cv::Point(box_x + box_width, box_y + box_height),
+        cv::Scalar(255, 255, 255), 2);
+      cv::putText(img, "a", cv::Point(box_x, box_y - 5),
+        cv::FONT_HERSHEY_SIMPLEX, 0.5, cv::Scalar(0, 255, 255), 1);
     }
 
-
-    cv::Mat img;
-    while (true) {
-        cap >> img;
-
-        auto detections = this->GetBoundingBoxes(img);
-
-        for ( auto detection : detections ) {
-          int box_x = detection[0];
-          int box_y = detection[1];
-          int box_width = detection[2];
-          int box_height = detection[3];
-          cv::rectangle(img, cv::Point(box_x, box_y),
-            cv::Point(box_x + box_width, box_y + box_height),
-            cv::Scalar(255, 255, 255), 2);
-          cv::putText(img, "a", cv::Point(box_x, box_y - 5),
-            cv::FONT_HERSHEY_SIMPLEX, 0.5, cv::Scalar(0, 255, 255), 1);
-        }
-
-        cv::imshow("image", img);
-        int k = cv::waitKey(10);
-        if (k == 113) {
-            break;
-        }
+    cv::imshow("image", img);
+    int k = cv::waitKey(10);
+    if (k == 113) {
+        break;
     }
+  }
 
-    cap.release();
-    cv::destroyAllWindows();
+  cap.release();
+  cv::destroyAllWindows();
 }
 
 /**
@@ -144,4 +141,4 @@ std::vector<Obstacle> Detector::DefineObstacles(std::vector<int> coordinates) {}
  * @return cv::Mat Video frame with coordinates displayed.
  */
 cv::Mat Detector::WriteRobotCoordinatesOnFrame(std::vector<Obstacle>,
-                                               cv::Mat frame) {}
+  cv::Mat frame) {}

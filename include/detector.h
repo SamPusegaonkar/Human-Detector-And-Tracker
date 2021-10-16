@@ -8,9 +8,13 @@
 #include <iostream>
 #include <vector>
 #include <string>
-#include <opencv4/opencv2/opencv.hpp>
-#include "../include/camera.h"
+#include <opencv2/dnn.hpp>
+#include <opencv2/imgproc.hpp>
+#include <opencv2/highgui.hpp>
+#include <opencv2/core/utils/trace.hpp>
+
 #include "../include/obstacle.h"
+#include "../include/camera.h"
 
 class Detector: public Camera {
  private:
@@ -21,10 +25,11 @@ class Detector: public Camera {
   Camera cam_;
 
  public:
+  Detector();
   bool LoadModel(std::string file_name);
   void Detect();
-  std::vector<int> GetBoundingBoxes(cv::Mat frame);
+  std::vector<std::vector<int>> GetBoundingBoxes(cv::Mat frame);
   std::vector<Obstacle> DefineObstacles(std::vector<int> coordinates);
   cv::Mat WriteRobotCoordinatesOnFrame(std::vector<Obstacle>, cv::Mat frame);
-  Detector::~Detector() {}
+  ~Detector();
 };
