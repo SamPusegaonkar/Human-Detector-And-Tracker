@@ -84,9 +84,18 @@ Once that information has been obtained in the camera’s reference frame, this 
 - DLib 19.22 (Boost Software License - Open Source)[[6](http://dlib.net/imaging.html)] for implementing the tracking functionality. 
 - MobileNet [[5](https://arxiv.org/abs/1704.04861)] Configuration Files.
 - Eigan 3.4 (MPL2 License) [[10](http://eigen.tuxfamily.org/index.php?title=Main_Page#License)] used for liner algebra implementation.
+- JSONCPP [[11](https://github.com/open-source-parsers/jsoncpp)] to parse the configuration information for the test data & get the bounding boxes.
 
 
 At the end of this contract, Acme Robotics will receive a well-documented & fully tested software module that can detect and track humans while returning their position in the robot frame. 
+
+# Known Issues (so far)
+```
+1. Failed to load module "canberra-gtk-module". 
+```
+Issue occurs using the .detect method from the Detector class. 
+
+This issue could be solved by proper installation of OpenCV. Ideally, should be install all the dependencies of opencv which we avoided.
 
 
 # Quad Chart:
@@ -122,3 +131,5 @@ At the end of this contract, Acme Robotics will receive a well-documented & full
 [9] https://github.com/opencv/opencv
 
 [10] http://eigen.tuxfamily.org/index.php?title=Main_Page#License
+
+[11] https://github.com/open-source-parsers/jsoncpp
