@@ -4,24 +4,23 @@
  * @brief Unit tests the detector class methods
  * @version 0.1
  * @date 2021-10-16
- * 
  * @copyright Copyright (c) 2021
- * 
  */
 
+#include "../include/detector.h"
+
 #include <gtest/gtest.h>
-#include <fstream>
 #include <jsoncpp/json/json.h>
+#include <fstream>
 #include <string>
 
-#include "../include/detector.h"
 
 TEST(Detector_Test, test_the_bounding_boxes) {
   auto d = new Detector();
   std::ifstream ifs("../test/test_annotation.json");
   Json::Reader reader;
   Json::Value obj;
-  reader.parse(ifs, obj);  
+  reader.parse(ifs, obj);
 
   double ground_truth_count = 0;
   double current_count = 0;
@@ -31,13 +30,17 @@ TEST(Detector_Test, test_the_bounding_boxes) {
     std::string file_name = "../test/Images/" + detection["ID"].asString() +
     ".jpg";
 
+    // Checks if the image file is present or not
     std::ifstream infile(file_name);
     if (!infile) continue;
 
+    // Get the count of the actual bounding boxes
     cv::Mat image = cv::imread(file_name);
     std::cout << file_name << " " << std::endl;
     auto result = d->GetBoundingBoxes(image);
     current_count += result.size();
+
+    // Get the count of the ground truth bounding boxes
     for ( auto boxes : detection["gtboxes"] ) {
       ground_truth_count += boxes["fbox"].size();
     }
