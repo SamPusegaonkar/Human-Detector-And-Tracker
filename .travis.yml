@@ -30,6 +30,8 @@ install:
   - sudo apt-get install -y -qq lcov
 
 script:
+  - chmod +x download_model_files.sh
+  - ./download_model_files.sh
   - export CXX=$COMPILER;
   - mkdir build
   - cd build
