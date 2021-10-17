@@ -83,6 +83,7 @@ Once that information has been obtained in the camera’s reference frame, this 
 - For processing our video input, OpenCV 4.5.3 (Apache 2 license)[[9](ttps://github.com/opencv/opencv)]will be used.
 - DLib 19.22 (Boost Software License - Open Source)[[6](http://dlib.net/imaging.html)] for implementing the tracking functionality. 
 - MobileNet [[5](https://arxiv.org/abs/1704.04861)] Configuration Files.
+- Eigan 3.4 (MPL2 License) [[10](http://eigen.tuxfamily.org/index.php?title=Main_Page#License)] used for liner algebra implementation.
 
 
 At the end of this contract, Acme Robotics will receive a well-documented & fully tested software module that can detect and track humans while returning their position in the robot frame. 
@@ -119,3 +120,5 @@ At the end of this contract, Acme Robotics will receive a well-documented & full
 [8] https://cmake.org/
 
 [9] https://github.com/opencv/opencv
+
+[10] http://eigen.tuxfamily.org/index.php?title=Main_Page#License

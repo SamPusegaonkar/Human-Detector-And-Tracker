@@ -6,6 +6,8 @@ add_executable(
     detector_test.cpp
     ../app/detector.cpp
     ${OpenCV_INCLUDE_DIRS}
+    obstacle_test.cpp
+    ../app/obstacle.cpp
 )
 
 target_include_directories(cpp-test PUBLIC ../vendor/googletest/googletest/include 
