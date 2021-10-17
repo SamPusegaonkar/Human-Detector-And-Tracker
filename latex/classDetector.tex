@@ -1,0 +1,52 @@
+\hypertarget{classDetector}{}\section{Detector Class Reference}
+\label{classDetector}\index{Detector@{Detector}}
+
+
+{\ttfamily \#include $<$detector.\+h$>$}
+
+
+
+Inheritance diagram for Detector\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=134pt]{classDetector__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Detector\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=134pt]{classDetector__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classDetector_a340608cd637b240cb148571874b07cea}\label{classDetector_a340608cd637b240cb148571874b07cea}} 
+bool {\bfseries Load\+Model} (std\+::string file\+\_\+name)
+\item 
+\mbox{\Hypertarget{classDetector_ad50335bb7eff38205606ad6933193c29}\label{classDetector_ad50335bb7eff38205606ad6933193c29}} 
+void {\bfseries Detect} ()
+\item 
+\mbox{\Hypertarget{classDetector_a9f8e377533364eb2b8d936610bf1f9d6}\label{classDetector_a9f8e377533364eb2b8d936610bf1f9d6}} 
+std\+::vector$<$ int $>$ {\bfseries Get\+Bounding\+Boxes} (cv\+::\+Mat frame)
+\item 
+\mbox{\Hypertarget{classDetector_a6df343764a127ebcf45e19a7e4698c6c}\label{classDetector_a6df343764a127ebcf45e19a7e4698c6c}} 
+std\+::vector$<$ \hyperlink{classObstacle}{Obstacle} $>$ {\bfseries Define\+Obstacles} (std\+::vector$<$ int $>$ coordinates)
+\item 
+\mbox{\Hypertarget{classDetector_a2deb549f198c279abcd261a4977e3236}\label{classDetector_a2deb549f198c279abcd261a4977e3236}} 
+cv\+::\+Mat {\bfseries Write\+Robot\+Coordinates\+On\+Frame} (std\+::vector$<$ \hyperlink{classObstacle}{Obstacle} $>$, cv\+::\+Mat frame)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Copyright 2021  Shon Cortes \& Sameer Pusegaonkar 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/detector.\+h\end{DoxyCompactItemize}
