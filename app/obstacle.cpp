@@ -34,23 +34,22 @@ void Obstacle::SetObstacleHeight(int height) {
     obstacle_height_ = height;
 }
 
-// TO DO: Add detailed info on class method.
 /**
  * @brief Compute the obstacle distance with respect to the camera frame.
  * 
  * @param focal_length Focal length of camera.
  */
 void Obstacle::ComputeDepth(float focal_length) {
-    camera_z_position_ = 0;
+    double avg_human_height = 1.78;  // Meters
+    camera_z_position_ = (avg_human_height * focal_length) / obstacle_height_;
 }
 
-// TO DO: Add detailed info on class method.
 /**
- * @brief Compute the horizontal position of object with respect to the camera frame.
+ * @brief Compute the horizontal position of object with respect to the center of the camera frame.
  * 
  */
-void Obstacle::ComputeHorizontalPosition() {
-    camera_x_position_ = 0;
+void Obstacle::ComputeHorizontalPosition(float horizontal_fov) {
+    camera_x_position_ = camera_z_position_ * atan(horizontal_fov / 2);
 }
 
 /**
