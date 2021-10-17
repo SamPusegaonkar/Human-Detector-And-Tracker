@@ -11,12 +11,12 @@
  * @brief Construct a new Camera:: Camera object
  * 
  */
-Camera::Camera() {
-  int fps_{0};
-  float horizontal_fov_{0};
-  float focal_length_{0};
-  // TO DO: Create transformation matrix to go from Camera frame to Robot frame.
-  std::vector<std::vector<int>> _transformation_matrix{0};
-}
+// Camera::Camera() {
+//   int fps_{0};
+//   float horizontal_fov_{0};
+//   float focal_length_{0};
+//   // TO DO: Create transformation matrix to go from Camera frame to Robot frame.
+//   std::vector<std::vector<int>> _transformation_matrix{0};
+// }
 
-Camera::~Camera() {}
+// Camera::~Camera() {}

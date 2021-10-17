@@ -2,6 +2,6 @@ Done processing ./app/camera.cpp
 Done processing ./app/detector.cpp
 Done processing ./app/main.cpp
 Done processing ./app/obstacle.cpp
+Done processing ./test/detector_test.cpp
 Done processing ./test/main.cpp
-Done processing ./test/test.cpp
-Total errors found: 5
+Total errors found: 11

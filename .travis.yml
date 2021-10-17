@@ -20,10 +20,15 @@ matrix:
             - cmake-data
       env: COMPILER=g++-5
 
+before_script: 
+  - sudo apt-get install libjsoncpp-dev
+
 before_install:
   - pip install --user cpp-coveralls
+
 install:
   - sudo apt-get install -y -qq lcov
+
 script:
   - export CXX=$COMPILER;
   - mkdir build
