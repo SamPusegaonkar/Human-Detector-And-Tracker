@@ -45,12 +45,19 @@ before_script:
 
   # For Eigen installation
   - sudo apt-get install libeigen3-dev
+  
+  # Install Json.cpp
+  - sudo apt-get install libjsoncpp-dev
 
 before_install:
   - pip install --user cpp-coveralls
+
 install:
   - sudo apt-get install -y -qq lcov
+
 script:
+  - chmod +x download_model_files.sh
+  - ./download_model_files.sh
   - export CXX=$COMPILER;
   - mkdir build
   - cd build

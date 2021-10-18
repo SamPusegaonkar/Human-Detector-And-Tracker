@@ -2,21 +2,36 @@
 
 [![Build Status](https://app.travis-ci.com/SamPusegaonkar/Human-Detector-And-Tracker.svg?branch=main)](https://app.travis-ci.com/SamPusegaonkar/Human-Detector-And-Tracker)
 [![Coverage Status](https://coveralls.io/repos/github/SamPusegaonkar/Human-Detector-And-Tracker/badge.svg?branch=main)](https://coveralls.io/github/SamPusegaonkar/Human-Detector-And-Tracker?branch=main)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
+
+
 ---
 
 A software module for Acme's MediBot robot to detect &amp; track humans. 
 
 # Team Members:
 
-- Shon Cortes
-- Sameer Pusegaonkar
+- [Shon Cortes](https://github.com/shonbc/)
+- [Sameer Pusegaonkar](https://github.com/sampusegaonkar/)
 
-# Proposal Video for the project:
+# Phase 0
+## Proposal Video for the project:
 Video can be found [here](https://www.youtube.com/embed/TuUaH0ptrn0):
 
-# Written Proposal:
+## Written Proposal:
 A 2 Page Written proposal can be found [here](https://github.com/SamPusegaonkar/Human-Detector-And-Tracker/blob/main/docs/initial/Proposal.pdf)
 
+***
+# Phase 1
+## Update Video for the project:
+Video can be found [here.](https://youtu.be/4Fnji_aOBQk)
+
+## Product Backlog:
+All backlog is being tracked [here.](https://docs.google.com/spreadsheets/d/1d91Km6jjr7IpjPjCiHpYYn6EU4wXOL3bwWk6Ny9Gc3k/edit#gid=0)
+
+## Iteration Planning Meetings & Scrum Meeting Notes:
+Can be found [here.](https://docs.google.com/document/u/5/d/1nzskLJN1WSXA-vDnfdTdaYm-gOQvoOS33DXtdwem0go/edit#heading=h.qk4i5j7fr8g4)
+***
 
 # Introduction: 
 MediBot: A 4 wheeled mobile robot developed by Acme Robotics has become an essential part of all hospitals across the state. This robot travels through hallways to deliver medicines reliably to their patients. Given the drastic increase in the number of patients, nurses, doctors during pandemics & flu seasons [[1](https://ourworldindata.org/covid-hospitalizations),[2](https://www.cdc.gov/coronavirus/2019-ncov/covid-data/covidview/index.html)] this robot needs to make sure that it doesn’t get obstructed by any humans when it travels through the hallways.
@@ -46,9 +61,9 @@ An initial UML activity and class diagram, [Fig. 3, 4], has been made outlining 
 <p align = "center">
 
 
-<img src="./UML/revised10_13_2021/ClassDiagram.png" alt="Logo"/>
+<img src="./UML/revised/ClassDiagram.png" alt="Logo"/>
 
-<img src="./UML/revised10_13_2021/ActivityDiagram.png" alt="Logo"/>
+<img src="./UML/revised/ActivityDiagram.png" alt="Logo"/>
 
 <p align = "center"><em>Figure 3. Class Diagram - On the left</em>
 
@@ -81,9 +96,18 @@ Once that information has been obtained in the camera’s reference frame, this 
 - DLib 19.22 (Boost Software License - Open Source)[[6](http://dlib.net/imaging.html)] for implementing the tracking functionality. 
 - MobileNet [[5](https://arxiv.org/abs/1704.04861)] Configuration Files.
 - Eigan 3.4 (MPL2 License) [[10](http://eigen.tuxfamily.org/index.php?title=Main_Page#License)] used for liner algebra implementation.
+- JSONCPP [[11](https://github.com/open-source-parsers/jsoncpp)] to parse the configuration information for the test data & get the bounding boxes.
 
 
 At the end of this contract, Acme Robotics will receive a well-documented & fully tested software module that can detect and track humans while returning their position in the robot frame. 
+
+# Known Issues (so far)
+```
+1. Failed to load module "canberra-gtk-module". 
+```
+Issue occurs using the .detect method from the Detector class. 
+
+This issue could be solved by proper installation of OpenCV. Ideally, should be install all the dependencies of opencv which we avoided.
 
 
 # Quad Chart:
@@ -119,3 +143,5 @@ At the end of this contract, Acme Robotics will receive a well-documented & full
 [9] https://github.com/opencv/opencv
 
 [10] http://eigen.tuxfamily.org/index.php?title=Main_Page#License
+
+[11] https://github.com/open-source-parsers/jsoncpp
