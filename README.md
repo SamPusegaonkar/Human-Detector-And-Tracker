@@ -11,15 +11,27 @@ A software module for Acme's MediBot robot to detect &amp; track humans.
 
 # Team Members:
 
-- Shon Cortes
-- Sameer Pusegaonkar
+- [Shon Cortes](https://github.com/shonbc/)
+- [Sameer Pusegaonkar](https://github.com/sampusegaonkar/)
 
-# Proposal Video for the project:
+# Phase 0
+## Proposal Video for the project:
 Video can be found [here](https://www.youtube.com/embed/TuUaH0ptrn0):
 
-# Written Proposal:
+## Written Proposal:
 A 2 Page Written proposal can be found [here](https://github.com/SamPusegaonkar/Human-Detector-And-Tracker/blob/main/docs/initial/Proposal.pdf)
 
+***
+# Phase 1
+## Update Video for the project:
+Video can be found [here.](https://youtu.be/4Fnji_aOBQk)
+
+## Product Backlog:
+All backlog is being tracked [here.](https://docs.google.com/spreadsheets/d/1d91Km6jjr7IpjPjCiHpYYn6EU4wXOL3bwWk6Ny9Gc3k/edit#gid=0)
+
+## Iteration Planning Meetings & Scrum Meeting Notes:
+Can be found [here.](https://docs.google.com/document/u/5/d/1nzskLJN1WSXA-vDnfdTdaYm-gOQvoOS33DXtdwem0go/edit#heading=h.qk4i5j7fr8g4)
+***
 
 # Introduction: 
 MediBot: A 4 wheeled mobile robot developed by Acme Robotics has become an essential part of all hospitals across the state. This robot travels through hallways to deliver medicines reliably to their patients. Given the drastic increase in the number of patients, nurses, doctors during pandemics & flu seasons [[1](https://ourworldindata.org/covid-hospitalizations),[2](https://www.cdc.gov/coronavirus/2019-ncov/covid-data/covidview/index.html)] this robot needs to make sure that it doesn’t get obstructed by any humans when it travels through the hallways.
