@@ -38,3 +38,23 @@ TEST(Obstacle_Test, position_in_robot_frame) {
         EXPECT_DOUBLE_EQ(expected_pos[i], pos[i]);
     }
 }
+
+/**
+ * @brief Test the setter for the obstacle z-position in the camera frame
+ * 
+ */
+TEST(Obstacle_test, camera_depth_pos) {
+    float focal_length = 0.00367;  // Meters
+    Obstacle depth_test_obstacle;
+    depth_test_obstacle.ComputeDepth(focal_length);
+}
+
+/**
+ * @brief Test the setter for the obstacle x-position in the camera frame
+ * 
+ */
+TEST(Obstacle___Test, camera_horizontal_pos) {
+    float horizontal_fov = 1.2290609;  // Radians
+    Obstacle horizontal_test_obstacle;
+    horizontal_test_obstacle.ComputeHorizontalPosition(horizontal_fov);
+}
