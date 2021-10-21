@@ -8,6 +8,7 @@
  */
 
 #include <iostream>
+#include <fstream>
 
 #include "../include/detector.h"
 #include "../include/camera.h"
@@ -21,8 +22,7 @@
 bool Detector::LoadModel(std::string file_name) {
   std::string model_file_binary = file_name + ".caffemodel";
   std::string model_file_text = file_name + ".prototxt";
-  auto model = cv::dnn::readNetFromCaffe(model_file_text, model_file_binary);
-  return true;
+  return std::ifstream(model_file_binary) && std::ifstream(model_file_text);
 }
 
 /**
