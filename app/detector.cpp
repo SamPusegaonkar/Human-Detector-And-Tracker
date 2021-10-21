@@ -44,6 +44,8 @@ void Detector::Detect() {
     // Gets all the bounding boxes
     auto detections = this->GetBoundingBoxes(img);
 
+    auto obstacles = this->DefineObstacles(detections);
+
     for (auto detection : detections) {
       int box_x = detection[0];
       int box_y = detection[1];
@@ -123,15 +125,28 @@ std::vector<std::vector<int>> Detector::GetBoundingBoxes(cv::Mat img) {
   return detections;
 }
 
-std::vector<Obstacle> Detector::DefineObstacles(std::vector<int> coordinates) {}
+std::vector<Obstacle> Detector::DefineObstacles(std::vector<std::vector<int>> coordinates) {
+  std::vector<Obstacle> obstacles(coordinates.size());
 
-// TO DO: Add detailed info on class method.
+  for ( int i = 0; i < obstacles.size(); i++ ) {
+    auto coordinate = coordinates[i];
+    int box_width = coordinate[2];
+    int box_height = coordinate[3];
+
+
+    obstacles[i].SetObstacleWidth(box_width);
+    obstacles[i].SetObstacleHeight(box_height);
+  }
+  return obstacles;
+}
+
 /**
  * @brief Writes the Obstacles coordinates, with respect to the 
  * robot coordinate frame, on the frame. 
- * 
  * @param frame Video frame being processed.
  * @return cv::Mat Video frame with coordinates displayed.
  */
 cv::Mat Detector::WriteRobotCoordinatesOnFrame(std::vector<Obstacle>,
-                                               cv::Mat frame) {}
+                                               cv::Mat frame) {
+
+                                               }

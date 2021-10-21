@@ -46,7 +46,7 @@ class Detector: public Camera {
   bool LoadModel(std::string file_name);
   void Detect();
   std::vector<std::vector<int>> GetBoundingBoxes(cv::Mat frame);
-  std::vector<Obstacle> DefineObstacles(std::vector<int> coordinates);
+  std::vector<Obstacle> DefineObstacles(std::vector<std::vector<int>> coordinates);
   cv::Mat WriteRobotCoordinatesOnFrame(std::vector<Obstacle>, cv::Mat frame);
   ~Detector() {}
 };
