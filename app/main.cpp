@@ -9,13 +9,12 @@
  * 
  */
 
+#include <jsoncpp/json/json.h>
+#include <fstream>
 #include <iostream>
 #include "../include/camera.h"
 #include "../include/detector.h"
 #include "../include/obstacle.h"
-#include <fstream>
-#include <jsoncpp/json/json.h>
-
 
 int main() {
     // auto d = new Detector();
