@@ -36,7 +36,7 @@ TEST(Obstacle_Test, position_in_robot_frame) {
 
 /**
  * @brief Test the transformation for the obstacle position 
- * from a bounding box (height, width) to the robot frame (x, y)
+ * from different bounding boxes (height, width) to the robot frame (x, y)
  * 
  */
 TEST(Obstacle_test, camera_depth_pos) {
