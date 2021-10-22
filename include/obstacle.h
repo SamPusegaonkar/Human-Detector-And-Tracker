@@ -1,7 +1,13 @@
-/** Copyright 2021
- *  @Authors
- *  Shon Cortes & Sameer Pusegaonkar
-*/
+/**
+ * @file obstacle.h
+ * @author Shon Cortes & Sameer Pusegaonkar
+ * @brief Obstacle class used to store detected obstacle positions
+ * @version 0.1
+ * @date 2021-10-22
+ * 
+ * @copyright Copyright (c) 2021
+ * 
+ */
 
 #pragma once
 

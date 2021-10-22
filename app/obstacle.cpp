@@ -80,3 +80,24 @@ std::vector<double> Obstacle::GetRobotFrameCoordinates(
 
     return pos_in_rframe;
 }
+
+// int main() {
+//     std::vector<std::vector<double> > transformation_matrix{
+//         {0.0, 0.0, -1.0, 0.5},
+//         {-1.0, 0.0, 0.0, 0.0},
+//         {0.0, -1.0, 0.0, 0.5},
+//         {0.0, 0.0, 0.0, 1.0}};
+
+//     float focal_length{0.00367};
+//     float horizontal_fov{1.0472};  // 60 deg in Radians
+//     Obstacle o;
+//     o.SetObstacleHeight(1312*2);
+//     o.SetObstacleWidth(1260*2);
+//     o.ComputeDepth(focal_length);
+//     o.ComputeHorizontalPosition(horizontal_fov);
+//     std::cout << o.getDepth() << std::endl;
+//     auto pos = o.GetRobotFrameCoordinates(transformation_matrix);
+//     std::cout << pos[0] << std::endl;
+//     std::cout << pos[1] << std::endl;
+
+// }
