@@ -1,7 +1,13 @@
-/** Copyright 2021
- *  @Authors
- *  Shon Cortes & Sameer Pusegaonkar
-*/
+/**
+ * @file main.cpp
+ * @author Shon Cortes & Sameer Pusegaonkar
+ * @brief Main file to implament 
+ * @version 0.1
+ * @date 2021-10-22
+ * 
+ * @copyright Copyright (c) 2021
+ * 
+ */
 
 #include <iostream>
 #include "../include/camera.h"
