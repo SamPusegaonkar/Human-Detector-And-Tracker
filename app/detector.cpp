@@ -44,7 +44,7 @@ std::vector<std::vector<double>> Detector::Detect(cv::Mat img) {
     auto detection = detections[i];
 
     obstacle.ComputeDepth(cam_.focal_length_);
-    obstacle.ComputeHorizontalPosition();
+    obstacle.ComputeHorizontalPosition(cam_.horizontal_fov_);
 
     auto robot_pos = obstacle.GetRobotFrameCoordinates(
         cam_.transformation_matrix_);
