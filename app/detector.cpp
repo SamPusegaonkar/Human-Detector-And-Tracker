@@ -101,42 +101,42 @@ std::vector<std::vector<int>> Detector::GetBoundingBoxes(cv::Mat img) {
                         CV_32F, output.ptr<float>());
 
   for (int i = 0; i < detectionMat.rows; i++) {
-      int class_id = detectionMat.at<float>(i, 1);
-      float confidence = detectionMat.at<float>(i, 2);
+    int class_id = detectionMat.at<float>(i, 1);
+    float confidence = detectionMat.at<float>(i, 2);
 
-      // Check if the detection is of good quality
-      if (confidence > this->confidence_) {
-          int box_x =
-              static_cast<int>(detectionMat.at<float>(i, 3) * img.cols);
+    // Check if the detection is of good quality
+    if (confidence > this->confidence_) {
+      int box_x =
+        static_cast<int>(detectionMat.at<float>(i, 3) * img.cols);
 
-          int box_y =
-              static_cast<int>(detectionMat.at<float>(i, 4) * img.rows);
+      int box_y =
+        static_cast<int>(detectionMat.at<float>(i, 4) * img.rows);
 
-          int box_width =
-              static_cast<int>(detectionMat.at<float>(i, 5) * img.cols - box_x);
+      int box_width =
+        static_cast<int>(detectionMat.at<float>(i, 5) * img.cols - box_x);
 
-          int box_height =
-              static_cast<int>(detectionMat.at<float>(i, 6) * img.rows - box_y);
+      int box_height =
+        static_cast<int>(detectionMat.at<float>(i, 6) * img.rows - box_y);
 
-          detections.push_back({box_x, box_y, box_width, box_height});
-      }
+      detections.push_back({box_x, box_y, box_width, box_height});
+    }
   }
   return detections;
 }
 
 std::vector<Obstacle> Detector::DefineObstacles(
-    std::vector<std::vector<int>> coordinates) {
-    std::vector<Obstacle> obstacles(coordinates.size());
+  std::vector<std::vector<int>> coordinates) {
+  std::vector<Obstacle> obstacles(coordinates.size());
 
-    for (int i = 0; i < obstacles.size(); i++) {
-        auto coordinate = coordinates[i];
-        int box_width = coordinate[2];
-        int box_height = coordinate[3];
+  for (int i = 0; i < obstacles.size(); i++) {
+    auto coordinate = coordinates[i];
+    int box_width = coordinate[2];
+    int box_height = coordinate[3];
 
-        obstacles[i].SetObstacleWidth(box_width);
-        obstacles[i].SetObstacleHeight(box_height);
-    }
-    return obstacles;
+    obstacles[i].SetObstacleWidth(box_width);
+    obstacles[i].SetObstacleHeight(box_height);
+  }
+  return obstacles;
 }
 
 /**
@@ -146,6 +146,6 @@ std::vector<Obstacle> Detector::DefineObstacles(
  * @return cv::Mat Video frame with coordinates displayed.
  */
 cv::Mat Detector::WriteRobotCoordinatesOnFrame(const cv::Mat& frame) {
-    cv::imshow("Video feed from Medibot", frame);
-    return frame;
+  cv::imshow("Video feed from Medibot", frame);
+  return frame;
 }
