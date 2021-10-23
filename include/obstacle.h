@@ -17,8 +17,6 @@
 
 class Obstacle {
  private:
-  std::string label_;
-  int id;
   float camera_x_position_;
   float camera_z_position_;
   float robot_x_position_;
@@ -32,8 +30,7 @@ class Obstacle {
  * @brief Construct a new Obstacle:: Obstacle object
  * 
  */
-Obstacle() : label_("obstacle"),
-    id{0},
+Obstacle() :
     camera_x_position_{0.0f},
     camera_z_position_{0.0f},
     robot_x_position_{0.0f},
