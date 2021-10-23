@@ -25,8 +25,6 @@ class Detector: public Camera {
  private:
   float confidence_;
   std::string model_file_;
-  std::string classes_;
-  std::vector<float> trackers_;
   Camera cam_;
 
  public:
