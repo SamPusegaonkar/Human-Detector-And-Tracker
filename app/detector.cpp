@@ -8,6 +8,7 @@
  */
 
 #include <iostream>
+#include <string>
 #include <fstream>
 
 #include "../include/detector.h"
@@ -35,10 +36,29 @@ std::vector<std::vector<double>> Detector::Detect(cv:: Mat img) {
   auto detections = this->GetBoundingBoxes(img);
   auto obstacles = this->DefineObstacles(detections);
   std::vector<std::vector<double>> positions;
-  for ( auto obstacle : obstacles ) {
+
+  for ( auto i = 0; i < detections.size(); i++ ) {
+    auto obstacle = obstacles[i];
+    auto detection = detections[i];
+
     obstacle.ComputeDepth(cam_.focal_length_);
     obstacle.ComputeHorizontalPosition();
-    positions.push_back(obstacle.GetRobotFrameCoordinates(cam_.transformation_matrix_));
+
+    auto robot_pos = obstacle.GetRobotFrameCoordinates(cam_.transformation_matrix_);
+    positions.push_back(robot_pos);
+
+    int box_x = detection[0];
+    int box_y = detection[1];
+    int box_width = detection[2];
+    int box_height = detection[3];
+
+    cv::rectangle(img, cv::Point(box_x, box_y),
+      cv::Point(box_x + box_width, box_y + box_height),
+      cv::Scalar(255, 255, 255), 2);
+    std::string text = "Human x: " + std::to_string(robot_pos[0]) + "y: " + std::to_string(robot_pos[1]);
+
+    cv::putText(img, text, cv::Point(box_x, box_y - 5),
+      cv::FONT_HERSHEY_SIMPLEX, 0.5, cv::Scalar(0, 255, 255), 1);
   }
 
   return positions;
