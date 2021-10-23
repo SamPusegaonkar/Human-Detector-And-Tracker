@@ -33,6 +33,36 @@ All backlog is being tracked [here.](https://docs.google.com/spreadsheets/d/1d91
 Can be found [here.](https://docs.google.com/document/u/5/d/1nzskLJN1WSXA-vDnfdTdaYm-gOQvoOS33DXtdwem0go/edit#heading=h.qk4i5j7fr8g4)
 ***
 
+## Build and Run Instructions:
+Clone repo:
+
+    git clone https://github.com/SamPusegaonkar/Human-Detector-And-Tracker
+
+Download model files:
+
+    ./download_model_files.sh
+
+Build with coverage on or off:
+
+    ./build_with_coverage.sh
+
+    or
+
+    ./build_coverage_off.sh
+
+Run the main file to demo the API in use:
+
+    ./build/app/shell-app
+
+Generate cppcheck, cpplint and valgrind results and store in a text file in /results directory:
+
+    ./run_cpplint.sh
+
+    ./run_cppcheck.sh
+
+    ./run_valgrind.sh
+
+
 # Introduction: 
 MediBot: A 4 wheeled mobile robot developed by Acme Robotics has become an essential part of all hospitals across the state. This robot travels through hallways to deliver medicines reliably to their patients. Given the drastic increase in the number of patients, nurses, doctors during pandemics & flu seasons [[1](https://ourworldindata.org/covid-hospitalizations),[2](https://www.cdc.gov/coronavirus/2019-ncov/covid-data/covidview/index.html)] this robot needs to make sure that it doesn’t get obstructed by any humans when it travels through the hallways.
 
