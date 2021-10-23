@@ -7,10 +7,13 @@
  * @copyright Copyright (c) 2021
  */
 
-#include <iostream>
 
-#include "../include/detector.h"
+#include <fstream>
+#include <iostream>
+#include <string>
+
 #include "../include/camera.h"
+#include "../include/detector.h"
 
 /**
  * @brief Load the human detection model.
@@ -21,52 +24,50 @@
 bool Detector::LoadModel(std::string file_name) {
   std::string model_file_binary = file_name + ".caffemodel";
   std::string model_file_text = file_name + ".prototxt";
-  auto model = cv::dnn::readNetFromCaffe(model_file_text, model_file_binary);
-  return true;
+  this->model_file_ = file_name;
+  return std::ifstream(model_file_binary) && std::ifstream(model_file_text);
 }
 
 /**
  * @brief A method to run detect humans using mobilenet.
+ * @param img 
+ * @return std::vector<std::vector<double>> 
  */
-void Detector::Detect() {
-  cv::VideoCapture cap;
-  cap.open(0);
+std::vector<std::vector<double>> Detector::Detect(cv::Mat img) {
+  // Gets all the bounding boxes
+  auto detections = this->GetBoundingBoxes(img);
+  auto obstacles = this->DefineObstacles(detections);
+  std::vector<std::vector<double>> positions;
 
-  // Checks if the video webcam is available or not
-  if (!cap.isOpened()) {
-      std::cout << "CANNOT OPEN CAM" << std::endl;
-      return;
-  }
-  cv::Mat img;
-  while (true) {
-    cap >> img;
+  for (auto i = 0; i < detections.size(); i++) {
+    auto obstacle = obstacles[i];
+    auto detection = detections[i];
 
-    // Gets all the bounding boxes
-    auto detections = this->GetBoundingBoxes(img);
+    obstacle.ComputeDepth(cam_.focal_length_);
+    obstacle.ComputeHorizontalPosition(cam_.horizontal_fov_);
 
-    for (auto detection : detections) {
-      int box_x = detection[0];
-      int box_y = detection[1];
-      int box_width = detection[2];
-      int box_height = detection[3];
+    auto robot_pos = obstacle.GetRobotFrameCoordinates(
+        cam_.transformation_matrix_);
+    positions.push_back(robot_pos);
 
-      // Print out the bounding boxes
-      cv::rectangle(img, cv::Point(box_x, box_y),
-        cv::Point(box_x + box_width, box_y + box_height),
-        cv::Scalar(255, 255, 255), 2);
-      cv::putText(img, "a", cv::Point(box_x, box_y - 5),
-        cv::FONT_HERSHEY_SIMPLEX, 0.5, cv::Scalar(0, 255, 255), 1);
-    }
+    int box_x = detection[0];
+    int box_y = detection[1];
+    int box_width = detection[2];
+    int box_height = detection[3];
 
-    cv::imshow("image", img);
-    int k = cv::waitKey(10);
-    if (k == 113) {
-        break;
-    }
+    cv::rectangle(img, cv::Point(box_x, box_y),
+      cv::Point(box_x + box_width, box_y + box_height),
+      cv::Scalar(255, 255, 255), 2);
+
+    std::string text = "Human x: " +
+      std::to_string(robot_pos[0]) +
+      "y: " + std::to_string(robot_pos[1]);
+
+    cv::putText(img, text, cv::Point(box_x, box_y - 5),
+      cv::FONT_HERSHEY_SIMPLEX, 0.5, cv::Scalar(0, 255, 255), 1);
   }
 
-  cap.release();
-  cv::destroyAllWindows();
+  return positions;
 }
 
 /**
@@ -77,8 +78,8 @@ void Detector::Detect() {
  */
 std::vector<std::vector<int>> Detector::GetBoundingBoxes(cv::Mat img) {
   auto model =
-    cv::dnn::readNetFromCaffe("../model_files/MobileNetSSD_deploy.prototxt",
-    "../model_files/MobileNetSSD_deploy.caffemodel");
+    cv::dnn::readNetFromCaffe(this->model_file_ + ".prototxt",
+                              this->model_file_ + ".caffemodel");
 
   std::vector<std::vector<int>> detections;
   int image_height = img.cols;
@@ -104,7 +105,7 @@ std::vector<std::vector<int>> Detector::GetBoundingBoxes(cv::Mat img) {
     float confidence = detectionMat.at<float>(i, 2);
 
     // Check if the detection is of good quality
-    if (confidence > 0.4) {
+    if (confidence > this->confidence_) {
       int box_x =
         static_cast<int>(detectionMat.at<float>(i, 3) * img.cols);
 
@@ -123,15 +124,28 @@ std::vector<std::vector<int>> Detector::GetBoundingBoxes(cv::Mat img) {
   return detections;
 }
 
-std::vector<Obstacle> Detector::DefineObstacles(std::vector<int> coordinates) {}
+std::vector<Obstacle> Detector::DefineObstacles(
+  std::vector<std::vector<int>> coordinates) {
+  std::vector<Obstacle> obstacles(coordinates.size());
 
-// TO DO: Add detailed info on class method.
+  for (int i = 0; i < obstacles.size(); i++) {
+    auto coordinate = coordinates[i];
+    int box_width = coordinate[2];
+    int box_height = coordinate[3];
+
+    obstacles[i].SetObstacleWidth(box_width);
+    obstacles[i].SetObstacleHeight(box_height);
+  }
+  return obstacles;
+}
+
 /**
  * @brief Writes the Obstacles coordinates, with respect to the 
  * robot coordinate frame, on the frame. 
- * 
  * @param frame Video frame being processed.
  * @return cv::Mat Video frame with coordinates displayed.
  */
-cv::Mat Detector::WriteRobotCoordinatesOnFrame(std::vector<Obstacle>,
-                                               cv::Mat frame) {}
+cv::Mat Detector::WriteRobotCoordinatesOnFrame(const cv::Mat& frame) {
+  cv::imshow("Video feed from Medibot", frame);
+  return frame;
+}

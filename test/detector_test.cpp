@@ -17,6 +17,7 @@
 
 TEST(Detector_Test, test_the_bounding_boxes) {
   auto d = new Detector();
+  d->LoadModel("../model_files/MobileNetSSD_deploy");
   std::ifstream ifs("../test/test_annotation.json");
   Json::Reader reader;
   Json::Value obj;
