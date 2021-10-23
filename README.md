@@ -52,7 +52,8 @@ Build with coverage on or off:
 
 Run the main file to demo the API in use:
 
-    ./build/app/shell-app
+    cd build
+    ./app/shell-app
 
 Generate cppcheck, cpplint and valgrind results and store in a text file in /results directory:
 
