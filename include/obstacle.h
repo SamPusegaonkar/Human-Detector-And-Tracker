@@ -47,6 +47,6 @@ Obstacle() : label_("obstacle"),
   void ComputeDepth(float focal_length);
   void ComputeHorizontalPosition(float horizontal_fov);
   std::vector<double> GetRobotFrameCoordinates(
-    std::vector<std::vector<double> > transformation_matrix);
+    std::vector<std::vector<double> > &transformation_matrix);
   ~Obstacle() {}
 };
