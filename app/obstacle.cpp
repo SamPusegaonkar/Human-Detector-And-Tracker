@@ -9,7 +9,7 @@
  * 
  */
 
-#include <eigen3/Eigen/Dense>
+#include <eigen3/Eigen/Core>
 #include <iostream>
 #include <vector>
 #include <string>
@@ -34,23 +34,22 @@ void Obstacle::SetObstacleHeight(int height) {
     obstacle_height_ = height;
 }
 
-// TO DO: Add detailed info on class method.
 /**
  * @brief Compute the obstacle distance with respect to the camera frame.
  * 
  * @param focal_length Focal length of camera.
  */
 void Obstacle::ComputeDepth(float focal_length) {
-    camera_z_position_ = 0;
+    double avg_human_height = 1.78;  // Meters
+    camera_z_position_ = (avg_human_height * focal_length) / obstacle_height_;
 }
 
-// TO DO: Add detailed info on class method.
 /**
- * @brief Compute the horizontal position of object with respect to the camera frame.
+ * @brief Compute the horizontal position of object with respect to the center of the camera frame.
  * 
  */
-void Obstacle::ComputeHorizontalPosition() {
-    camera_x_position_ = 0;
+void Obstacle::ComputeHorizontalPosition(float horizontal_fov) {
+    camera_x_position_ = camera_z_position_ * atan(horizontal_fov / 2);
 }
 
 /**
@@ -81,3 +80,24 @@ std::vector<double> Obstacle::GetRobotFrameCoordinates(
 
     return pos_in_rframe;
 }
+
+// int main() {
+//     std::vector<std::vector<double> > transformation_matrix{
+//         {0.0, 0.0, -1.0, 0.5},
+//         {-1.0, 0.0, 0.0, 0.0},
+//         {0.0, -1.0, 0.0, 0.5},
+//         {0.0, 0.0, 0.0, 1.0}};
+
+//     float focal_length{0.00367};
+//     float horizontal_fov{1.0472};  // 60 deg in Radians
+//     Obstacle o;
+//     // o.SetObstacleHeight(1312*2);
+//     // o.SetObstacleWidth(1260*2);
+//     // o.ComputeDepth(focal_length);
+//     o.ComputeHorizontalPosition(horizontal_fov);
+//     // std::cout << o.getDepth() << std::endl;
+//     auto pos = o.GetRobotFrameCoordinates(transformation_matrix);
+//     std::cout << pos[0] << std::endl;
+//     std::cout << pos[1] << std::endl;
+
+// }

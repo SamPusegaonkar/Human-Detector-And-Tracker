@@ -1,15 +1,20 @@
-/** Copyright 2021
- *  @Authors
- *  Shon Cortes & Sameer Pusegaonkar
-*/
+/**
+ * @file main.cpp
+ * @author Shon Cortes & Sameer Pusegaonkar
+ * @brief Main file to implament 
+ * @version 0.1
+ * @date 2021-10-22
+ * 
+ * @copyright Copyright (c) 2021
+ * 
+ */
 
+#include <jsoncpp/json/json.h>
+#include <fstream>
 #include <iostream>
 #include "../include/camera.h"
 #include "../include/detector.h"
 #include "../include/obstacle.h"
-#include <fstream>
-#include <jsoncpp/json/json.h>
-
 
 int main() {
     // auto d = new Detector();

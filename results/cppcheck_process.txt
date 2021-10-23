@@ -5,19 +5,19 @@
 [include/camera.h:25]: (warning) Member variable 'Camera::fps_' is not initialized in the constructor.
 [include/camera.h:25]: (warning) Member variable 'Camera::horizontal_fov_' is not initialized in the constructor.
 [include/camera.h:25]: (warning) Member variable 'Camera::focal_length_' is not initialized in the constructor.
-[include/detector.h:36]: (style) Variable 'confidence_' is assigned a value that is never used.
-[include/detector.h:37]: (style) Variable 'model_file_' is assigned a value that is never used.
-[include/detector.h:38]: (style) Variable 'classes_' is assigned a value that is never used.
-[include/detector.h:39]: (style) Variable 'trackers_' is assigned a value that is never used.
-[include/detector.h:35]: (warning) Member variable 'Detector::confidence_' is not initialized in the constructor.
-[app/detector.cpp:17]: (performance) Function parameter 'file_name' should be passed by reference.
-[app/detector.cpp:44]: (performance) Function parameter 'coordinates' should be passed by reference.
+[include/detector.h:40]: (style) Variable 'confidence_' is assigned a value that is never used.
+[include/detector.h:41]: (style) Variable 'model_file_' is assigned a value that is never used.
+[include/detector.h:42]: (style) Variable 'classes_' is assigned a value that is never used.
+[include/detector.h:43]: (style) Variable 'trackers_' is assigned a value that is never used.
+[app/detector.cpp:84]: (style) Variable 'image_height' is assigned a value that is never used.
+[app/detector.cpp:85]: (style) Variable 'image_width' is assigned a value that is never used.
+[app/detector.cpp:103]: (style) Variable 'class_id' is assigned a value that is never used.
+[include/detector.h:39]: (warning) Member variable 'Detector::confidence_' is not initialized in the constructor.
+[app/detector.cpp:21]: (performance) Function parameter 'file_name' should be passed by reference.
+[app/detector.cpp:126]: (performance) Function parameter 'coordinates' should be passed by reference.
 [include/camera.h:17]: (error) Code 'classCamera{' is invalid C code. Use --std or --language to configure the language.
-[include/obstacle.h:12]: (error) Code 'classObstacle{' is invalid C code. Use --std or --language to configure the language.
-[app/obstacle.cpp:25]: (style) The function 'ComputeDepth' is never used.
-[app/obstacle.cpp:34]: (style) The function 'ComputeHorizontalPosition' is never used.
-[app/detector.cpp:44]: (style) The function 'DefineObstacles' is never used.
-[app/detector.cpp:25]: (style) The function 'Detect' is never used.
-[app/detector.cpp:34]: (style) The function 'GetBoundingBoxes' is never used.
-[app/detector.cpp:17]: (style) The function 'LoadModel' is never used.
-[app/detector.cpp:54]: (style) The function 'WriteRobotCoordinatesOnFrame' is never used.
+[include/obstacle.h:18]: (error) Code 'classObstacle{' is invalid C code. Use --std or --language to configure the language.
+[app/detector.cpp:126]: (style) The function 'DefineObstacles' is never used.
+[app/detector.cpp:31]: (style) The function 'Detect' is never used.
+[app/detector.cpp:21]: (style) The function 'LoadModel' is never used.
+[app/detector.cpp:136]: (style) The function 'WriteRobotCoordinatesOnFrame' is never used.
