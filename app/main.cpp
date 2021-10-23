@@ -33,9 +33,8 @@ int main() {
     auto robot_coordinates = d->Detect(img);
 
     for ( auto robot_coordinate : robot_coordinates ) {
-      for ( auto coordiante : robot_coordinate ) {
-        std::cout << coordiante << std::endl;
-      }
+      std::cout << "(" << robot_coordinate[0] << ", "
+        << robot_coordinate[1] << ")" << std::endl;
     }
 
     auto frame = d->WriteRobotCoordinatesOnFrame(img);
