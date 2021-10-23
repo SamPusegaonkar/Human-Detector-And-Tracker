@@ -36,7 +36,7 @@ class Detector: public Camera {
    * 
    */
   Detector() {
-      float confidence_{0};
+      float confidence_{0.7};
       std::string model_file_{0};
       std::string classes_{0};
       std::vector<float> trackers_{0};
