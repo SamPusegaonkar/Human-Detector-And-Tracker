@@ -27,48 +27,21 @@ bool Detector::LoadModel(std::string file_name) {
 
 /**
  * @brief A method to run detect humans using mobilenet.
+ * @param img 
+ * @return std::vector<std::vector<double>> 
  */
-void Detector::Detect() {
-  cv::VideoCapture cap;
-  cap.open(0);
-
-  // Checks if the video webcam is available or not
-  if (!cap.isOpened()) {
-      std::cout << "CANNOT OPEN CAM" << std::endl;
-      return;
+std::vector<std::vector<double>> Detector::Detect(cv:: Mat img) {
+  // Gets all the bounding boxes
+  auto detections = this->GetBoundingBoxes(img);
+  auto obstacles = this->DefineObstacles(detections);
+  std::vector<std::vector<double>> positions;
+  for ( auto obstacle : obstacles ) {
+    obstacle.ComputeDepth(cam_.focal_length_);
+    obstacle.ComputeHorizontalPosition();
+    // positions.push_back(obstacle.GetRobotFrameCoordinates(cam_.transformation_matrix_));
+    positions.push_back({1, 2, 3});
   }
-  cv::Mat img;
-  while (true) {
-    cap >> img;
-
-    // Gets all the bounding boxes
-    auto detections = this->GetBoundingBoxes(img);
-
-    auto obstacles = this->DefineObstacles(detections);
-
-    for (auto detection : detections) {
-      int box_x = detection[0];
-      int box_y = detection[1];
-      int box_width = detection[2];
-      int box_height = detection[3];
-
-      // Print out the bounding boxes
-      cv::rectangle(img, cv::Point(box_x, box_y),
-        cv::Point(box_x + box_width, box_y + box_height),
-        cv::Scalar(255, 255, 255), 2);
-      cv::putText(img, "a", cv::Point(box_x, box_y - 5),
-        cv::FONT_HERSHEY_SIMPLEX, 0.5, cv::Scalar(0, 255, 255), 1);
-    }
-
-    cv::imshow("image", img);
-    int k = cv::waitKey(10);
-    if (k == 113) {
-        break;
-    }
-  }
-
-  cap.release();
-  cv::destroyAllWindows();
+  return positions;
 }
 
 /**
@@ -146,7 +119,18 @@ std::vector<Obstacle> Detector::DefineObstacles(std::vector<std::vector<int>> co
  * @param frame Video frame being processed.
  * @return cv::Mat Video frame with coordinates displayed.
  */
-cv::Mat Detector::WriteRobotCoordinatesOnFrame(std::vector<Obstacle>,
-                                               cv::Mat frame) {
+cv::Mat Detector::WriteRobotCoordinatesOnFrame(std::vector<Obstacle> obstacles,
+  cv::Mat frame) {
+  // for ( auto obstacle : obstacles ) {
+  //   float robot_x_position_ = obstacle.robot_x_position_;
+  //   float robot_y_position_;
 
-                                               }
+  //   // Print out the bounding boxes
+  //   cv::rectangle(img, cv::Point(box_x, box_y),
+  //     cv::Point(box_x + box_width, box_y + box_height),
+  //     cv::Scalar(255, 255, 255), 2);
+  //   cv::putText(img, "Human", cv::Point(box_x, box_y - 5),
+  //     cv::FONT_HERSHEY_SIMPLEX, 0.5, cv::Scalar(0, 255, 255), 1);
+  // }
+  return frame;
+}
