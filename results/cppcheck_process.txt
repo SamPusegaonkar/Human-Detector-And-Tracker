@@ -16,3 +16,4 @@
 [app/detector.cpp:24]: (performance) Function parameter 'file_name' should be passed by reference.
 [include/camera.h:17]: (error) Code 'classCamera{' is invalid C code. Use --std or --language to configure the language.
 [include/obstacle.h:12]: (error) Code 'classObstacle{' is invalid C code. Use --std or --language to configure the language.
+

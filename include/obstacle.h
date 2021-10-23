@@ -1,7 +1,13 @@
-/** Copyright 2021
- *  @Authors
- *  Shon Cortes & Sameer Pusegaonkar
-*/
+/**
+ * @file obstacle.h
+ * @author Shon Cortes & Sameer Pusegaonkar
+ * @brief Obstacle class used to store detected obstacle positions
+ * @version 0.1
+ * @date 2021-10-22
+ * 
+ * @copyright Copyright (c) 2021
+ * 
+ */
 
 #pragma once
 
@@ -39,7 +45,7 @@ Obstacle() : label_("obstacle"),
   void SetObstacleWidth(int width);
   void SetObstacleHeight(int height);
   void ComputeDepth(float focal_length);
-  void ComputeHorizontalPosition();
+  void ComputeHorizontalPosition(float horizontal_fov);
   std::vector<double> GetRobotFrameCoordinates(
     std::vector<std::vector<double> > transformation_matrix);
   ~Obstacle() {}

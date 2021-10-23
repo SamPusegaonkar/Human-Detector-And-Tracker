@@ -23,7 +23,6 @@ class Camera {
 
  public:
   Camera() {
-
   int fps_{30};
   float horizontal_fov_{1.2290609};  // Radians
   float focal_length_{0.00367};  // Meters
