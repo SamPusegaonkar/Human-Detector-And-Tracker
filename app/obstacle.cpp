@@ -40,8 +40,7 @@ void Obstacle::SetObstacleHeight(int height) {
  * @param focal_length Focal length of camera.
  */
 void Obstacle::ComputeDepth(float focal_length) {
-    double avg_human_height = 1.78;  // Meters
-    camera_z_position_ = (avg_human_height * focal_length) / obstacle_height_;
+    camera_z_position_ = (human_height_ * focal_length) / obstacle_height_;
 }
 
 /**

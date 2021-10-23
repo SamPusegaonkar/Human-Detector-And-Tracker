@@ -35,7 +35,7 @@ Obstacle() :
     camera_z_position_{0.0f},
     robot_x_position_{0.0f},
     robot_y_position_{0.0f},
-    human_height_{0.0f},
+    human_height_{1.78f},  // Meters
     obstacle_width_{0},
     obstacle_height_{0} {
 }
