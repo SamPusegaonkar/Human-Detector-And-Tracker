@@ -38,9 +38,9 @@ std::vector<std::vector<double>> Detector::Detect(cv:: Mat img) {
   for ( auto obstacle : obstacles ) {
     obstacle.ComputeDepth(cam_.focal_length_);
     obstacle.ComputeHorizontalPosition();
-    // positions.push_back(obstacle.GetRobotFrameCoordinates(cam_.transformation_matrix_));
-    positions.push_back({1, 2, 3});
+    positions.push_back(obstacle.GetRobotFrameCoordinates(cam_.transformation_matrix_));
   }
+
   return positions;
 }
 
@@ -121,16 +121,16 @@ std::vector<Obstacle> Detector::DefineObstacles(std::vector<std::vector<int>> co
  */
 cv::Mat Detector::WriteRobotCoordinatesOnFrame(std::vector<Obstacle> obstacles,
   cv::Mat frame) {
-  // for ( auto obstacle : obstacles ) {
-  //   float robot_x_position_ = obstacle.robot_x_position_;
-  //   float robot_y_position_;
+  for ( auto obstacle : obstacles ) {
+    float robot_x_position_ = obstacle.robot_x_position_;
+    float robot_y_position_ = obstacle.robot_y_position_;
 
-  //   // Print out the bounding boxes
-  //   cv::rectangle(img, cv::Point(box_x, box_y),
-  //     cv::Point(box_x + box_width, box_y + box_height),
-  //     cv::Scalar(255, 255, 255), 2);
-  //   cv::putText(img, "Human", cv::Point(box_x, box_y - 5),
-  //     cv::FONT_HERSHEY_SIMPLEX, 0.5, cv::Scalar(0, 255, 255), 1);
-  // }
+    // Print out the bounding boxes
+    cv::rectangle(frame, cv::Point(box_x, box_y),
+      cv::Point(box_x + box_width, box_y + box_height),
+      cv::Scalar(255, 255, 255), 2);
+    cv::putText(frame, "Human", cv::Point(box_x, box_y - 5),
+      cv::FONT_HERSHEY_SIMPLEX, 0.5, cv::Scalar(0, 255, 255), 1);
+  }
   return frame;
 }

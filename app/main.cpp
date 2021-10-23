@@ -12,23 +12,30 @@
 
 
 int main() {
-    // auto d = new Detector();
+  auto d = new Detector();
+  // d->LoadModel();
 
-
-    // std::ifstream ifs("../test/annotation.json");
-    // Json::Reader reader;
-    // Json::Value obj;
-    // reader.parse(ifs, obj);  // reader can also read strings
-
-    // const Json::Value& detections = obj["detections"];
-
-    // for ( auto detection : detections ) {
-    //     std::cout << detection["ID"];
-    //     for ( auto boxes : detection["gtboxes"] ) {
-    //         std::cout << " " << boxes["fbox"] << std::endl;
-    //     }
-    //     std::cout << " " << std::endl;
-    // }
-
-
+  cv::VideoCapture cap;
+  cap.open(0);
+  if (!cap.isOpened()) {
+    std::cout << "CANNOT OPEN CAM" << std::endl;
+    return 1;
+  }
+  cv::Mat img;
+  while (true) {
+    cap >> img;
+    auto detections = d->Detect(img);
+    for ( auto detection : detections ) {
+      for ( auto coordiante : detection ) {
+        std::cout << coordiante << std::endl;
+      }
+    }
+    cv::imshow("Video Feed from MediBot", img);
+    int k = cv::waitKey(10);
+    if (k == 113) {
+        break;
+    }
+  }
+  cap.release();
+  cv::destroyAllWindows();
 }
