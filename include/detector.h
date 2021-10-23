@@ -46,6 +46,6 @@ class Detector: public Camera {
   std::vector<std::vector<double>> Detect(cv::Mat frame);
   std::vector<std::vector<int>> GetBoundingBoxes(cv::Mat frame);
   std::vector<Obstacle> DefineObstacles(std::vector<std::vector<int>> coordinates);
-  cv::Mat WriteRobotCoordinatesOnFrame(std::vector<Obstacle>, cv::Mat frame);
+  cv::Mat WriteRobotCoordinatesOnFrame(cv::Mat& frame);
   ~Detector() {}
 };

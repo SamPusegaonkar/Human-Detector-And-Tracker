@@ -139,18 +139,7 @@ std::vector<Obstacle> Detector::DefineObstacles(std::vector<std::vector<int>> co
  * @param frame Video frame being processed.
  * @return cv::Mat Video frame with coordinates displayed.
  */
-cv::Mat Detector::WriteRobotCoordinatesOnFrame(std::vector<Obstacle> obstacles,
-  cv::Mat frame) {
-  for ( auto obstacle : obstacles ) {
-    float robot_x_position_ = obstacle.robot_x_position_;
-    float robot_y_position_ = obstacle.robot_y_position_;
-
-    // Print out the bounding boxes
-    cv::rectangle(frame, cv::Point(box_x, box_y),
-      cv::Point(box_x + box_width, box_y + box_height),
-      cv::Scalar(255, 255, 255), 2);
-    cv::putText(frame, "Human", cv::Point(box_x, box_y - 5),
-      cv::FONT_HERSHEY_SIMPLEX, 0.5, cv::Scalar(0, 255, 255), 1);
-  }
+cv::Mat Detector::WriteRobotCoordinatesOnFrame(cv::Mat& frame ) {
+  cv::imshow("Video feed from Medibot", frame);
   return frame;
 }
