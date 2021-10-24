@@ -21,7 +21,7 @@
  * @return true If the file is present & valid
  * @return false If the file is not present or valid 
  */
-bool Detector::LoadModel(std::string& file_name) {
+bool Detector::LoadModel(const std::string& file_name) {
   std::string model_file_binary = file_name + ".caffemodel";
   std::string model_file_text = file_name + ".prototxt";
   this->model_file_ = file_name;

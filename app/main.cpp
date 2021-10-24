@@ -19,7 +19,8 @@
 
 int main() {
   auto d = new Detector();
-  d->LoadModel("../model_files/MobileNetSSD_deploy");
+  const std::string file_name = "../model_files/MobileNetSSD_deploy";
+  d->LoadModel(file_name);
 
   cv::VideoCapture cap;
   cap.open(0);

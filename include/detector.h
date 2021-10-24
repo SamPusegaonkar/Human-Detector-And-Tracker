@@ -35,7 +35,7 @@ class Detector: public Camera {
   Detector() : model_file_{""} {
     this->confidence_ = 0.7f;
   }
-  bool LoadModel(std::string& file_name);
+  bool LoadModel(const std::string& file_name);
   std::vector<std::vector<double>> Detect(cv::Mat frame);
   std::vector<std::vector<int>> GetBoundingBoxes(cv::Mat frame);
   std::vector<Obstacle> DefineObstacles(
