@@ -38,16 +38,24 @@ Clone repo:
 
     git clone https://github.com/SamPusegaonkar/Human-Detector-And-Tracker
 
+Download Dependencies:
+
+    chmod +x dependencies.sh
+    ./dependencies.sh
+
 Download model files:
 
+    chmod +x download_model_files.sh
     ./download_model_files.sh
 
 Build with coverage on or off:
 
+    chmod +x build_with_coverage.sh
     ./build_with_coverage.sh
 
     or
 
+    chmod +x build_coverage_off.sh
     ./build_coverage_off.sh
 
 Run the main file to demo the API in use:
@@ -57,10 +65,13 @@ Run the main file to demo the API in use:
 
 Generate cppcheck, cpplint and valgrind results and store in a text file in /results directory:
 
+    chmod +x run_cpplint.sh
     ./run_cpplint.sh
 
+    chmod +x run_cppcheck.sh
     ./run_cppcheck.sh
 
+    chmod +x run_valgrind.sh
     ./run_valgrind.sh
 
 Generate Doxygen files:
