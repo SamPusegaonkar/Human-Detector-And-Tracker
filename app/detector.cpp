@@ -55,7 +55,7 @@ std::vector<std::vector<double>> Detector::Detect(cv::Mat img) {
       "y: " + std::to_string(robot_pos[1]);
 
     cv::putText(img, text, cv::Point(box_x, box_y - 5),
-      cv::FONT_HERSHEY_SIMPLEX, 0.5, cv::Scalar(0, 255, 255), 1);
+      cv::FONT_HERSHEY_SIMPLEX, 0.5, cv::Scalar(0, 0, 255), 1);
   }
 
   return positions;
