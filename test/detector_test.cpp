@@ -50,3 +50,22 @@ TEST(Detector_Test, test_the_bounding_boxes) {
   double percentage = current_count / ground_truth_count;
   EXPECT_GE(percentage , 0.0);
 }
+
+/**
+ * @brief Construct a new TEST object to test if model loads successfully
+ * 
+ */
+TEST(Detector_Test, test_loading_model) {
+  Detector d;
+  EXPECT_TRUE(d.LoadModel("../model_files/MobileNetSSD_deploy"));
+  EXPECT_FALSE(d.LoadModel("Testing"));
+}
+
+TEST(Detector_Test, test_define_objects) {
+  Detector d;
+  std::vector<std::vector<int>> coordinates{
+    {1, 2, 3, 4},
+    {2, 3, 5, 6},
+    {3, 4, 7, 8}};
+  EXPECT_EQ(d.DefineObstacles(coordinates).size(), coordinates.size());
+}
