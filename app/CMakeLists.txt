@@ -1,4 +1,4 @@
-add_executable(shell-app main.cpp detector.cpp camera.cpp obstacle.cpp)
+add_executable(shell-app main.cpp detector.cpp obstacle.cpp)
 
 # Link OpenCV
 target_link_libraries( shell-app ${OpenCV_LIBS} )
