@@ -38,7 +38,7 @@ int main() {
         << robot_coordinate[1] << ")" << std::endl;
     }
 
-    auto frame = d->WriteRobotCoordinatesOnFrame(img);
+    cv::imshow("Video feed from Medibot", img);
 
     int k = cv::waitKey(10);
     if (k == 113) {
