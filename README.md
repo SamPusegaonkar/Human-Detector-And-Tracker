@@ -148,6 +148,7 @@ At the end of this contract, Acme Robotics will receive a well-documented & full
 # Known Issues (so far)
 ```
 1. Failed to load module "canberra-gtk-module". 
+2. Position calculation is incorrect.
 ```
 Issue occurs using the .detect method from the Detector class. 
 
