@@ -12,3 +12,7 @@ build/
 
 # Vscode
 .vscode/
+
+#Doxygen
+html/
+latex/

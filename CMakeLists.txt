@@ -33,7 +33,7 @@ if (COVERAGE)
     include(CodeCoverage)
     set(LCOV_REMOVE_EXTRA "'vendor/*'")
     setup_target_for_coverage(code_coverage test/cpp-test coverage)
-    set(COVERAGE_SRCS app/main.cpp app/obstacle.cpp app/detector.cpp include/camera.h include/obstacle.h include/detector.h)
+    set(COVERAGE_SRCS app/obstacle.cpp app/detector.cpp include/camera.h include/obstacle.h include/detector.h)
 
     SET(CMAKE_CXX_FLAGS "-g -O0 -fprofile-arcs -ftest-coverage")
     SET(CMAKE_C_FLAGS "-g -O0 -fprofile-arcs -ftest-coverage")
