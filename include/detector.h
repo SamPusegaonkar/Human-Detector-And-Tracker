@@ -32,11 +32,10 @@ class Detector: public Camera {
    * @brief Construct a new Detector:: Detector object
    * 
    */
-  Detector() {
+  Detector() : model_file_{""} {
     this->confidence_ = 0.7f;
-    this->model_file_ = "";
   }
-  bool LoadModel(std::string file_name);
+  bool LoadModel(std::string& file_name);
   std::vector<std::vector<double>> Detect(cv::Mat frame);
   std::vector<std::vector<int>> GetBoundingBoxes(cv::Mat frame);
   std::vector<Obstacle> DefineObstacles(

@@ -21,7 +21,7 @@
  * @return true If the file is present & valid
  * @return false If the file is not present or valid 
  */
-bool Detector::LoadModel(std::string file_name) {
+bool Detector::LoadModel(std::string& file_name) {
   std::string model_file_binary = file_name + ".caffemodel";
   std::string model_file_text = file_name + ".prototxt";
   this->model_file_ = file_name;
@@ -82,8 +82,6 @@ std::vector<std::vector<int>> Detector::GetBoundingBoxes(cv::Mat img) {
                               this->model_file_ + ".caffemodel");
 
   std::vector<std::vector<int>> detections;
-  int image_height = img.cols;
-  int image_width = img.rows;
 
   //  Create blob from image
   auto blob = cv::dnn::blobFromImage(img, 0.007843,
@@ -101,7 +99,6 @@ std::vector<std::vector<int>> Detector::GetBoundingBoxes(cv::Mat img) {
                         CV_32F, output.ptr<float>());
 
   for (int i = 0; i < detectionMat.rows; i++) {
-    int class_id = detectionMat.at<float>(i, 1);
     float confidence = detectionMat.at<float>(i, 2);
 
     // Check if the detection is of good quality
