@@ -28,15 +28,13 @@ class Detector: public Camera {
   Camera cam_;
 
  public:
-  // TO DO: Define actual initialization values
-  /**
+   /**
    * @brief Construct a new Detector:: Detector object
    * 
    */
   Detector() {
-      float confidence_{0.7};
-      std::string model_file_{0};
-      Camera cam_;
+    this->confidence_ = 0.7f;
+    this->model_file_ = "";
   }
   bool LoadModel(std::string file_name);
   std::vector<std::vector<double>> Detect(cv::Mat frame);
