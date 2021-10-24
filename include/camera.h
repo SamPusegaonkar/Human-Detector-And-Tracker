@@ -23,12 +23,12 @@ class Camera {
 
  public:
   Camera() {
-  int fps_{30};
-  float horizontal_fov_{1.2290609};  // Radians
-  float focal_length_{0.00367};  // Meters
+  this->fps_ = 30;
+  this->horizontal_fov_ = 1.2290609;  // Radians
+  this->focal_length_ = 0.00367f;  // Meters
   // Transformation matrix to go from camera to robot frame
-  std::vector<std::vector<double> > transformation_matrix_{
-          {0.0, 0.0, -1.0, 0.5},
+  this->transformation_matrix_ =
+          {{0.0, 0.0, -1.0, 0.5},
           {-1.0, 0.0, 0.0, 0.0},
           {0.0, -1.0, 0.0, 0.5},
           {0.0, 0.0, 0.0, 1.0}};
