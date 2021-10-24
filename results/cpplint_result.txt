@@ -7,6 +7,4 @@ Done processing ./include/detector.h
 Done processing ./include/obstacle.h
 Done processing ./test/detector_test.cpp
 Done processing ./test/main.cpp
-Done processing ./test/newtest.cpp
 Done processing ./test/obstacle_test.cpp
-Total errors found: 4
