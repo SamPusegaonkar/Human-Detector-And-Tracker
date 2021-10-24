@@ -135,14 +135,3 @@ std::vector<Obstacle> Detector::DefineObstacles(
   }
   return obstacles;
 }
-
-/**
- * @brief Writes the Obstacles coordinates, with respect to the 
- * robot coordinate frame, on the frame. 
- * @param frame Video frame being processed.
- * @return cv::Mat Video frame with coordinates displayed.
- */
-cv::Mat Detector::WriteRobotCoordinatesOnFrame(const cv::Mat& frame) {
-  cv::imshow("Video feed from Medibot", frame);
-  return frame;
-}
