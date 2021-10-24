@@ -18,7 +18,7 @@
 #include "../include/obstacle.h"
 
 int main() {
-  auto d = new Detector();
+  std::unique_ptr<Detector> d = std::make_unique<Detector>();
   const std::string file_name = "../model_files/MobileNetSSD_deploy";
   d->LoadModel(file_name);
 
