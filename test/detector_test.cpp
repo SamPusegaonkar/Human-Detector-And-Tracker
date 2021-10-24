@@ -69,3 +69,35 @@ TEST(Detector_Test, test_define_objects) {
     {3, 4, 7, 8}};
   EXPECT_EQ(d.DefineObstacles(coordinates).size(), coordinates.size());
 }
+
+
+TEST(Detector_Test, test_detect_method) {
+  auto d = new Detector();
+  d->LoadModel("../model_files/MobileNetSSD_deploy");
+  std::ifstream ifs("../test/test_annotation.json");
+  Json::Reader reader;
+  Json::Value obj;
+  reader.parse(ifs, obj);
+
+  const Json::Value& detections = obj["detections"];
+  for ( auto detection : detections ) {
+    std::string file_name = "../test/Images/" + detection["ID"].asString() +
+    ".jpg";
+
+    // Checks if the image file is present or not
+    std::ifstream infile(file_name);
+    if (!infile) continue;
+
+    // Get the count of the actual bounding boxes
+    cv::Mat image = cv::imread(file_name);
+    std::cout << file_name << " " << std::endl;
+
+    int ground_truth_count = 0;
+    for ( auto boxes : detection["gtboxes"] ) {
+      ground_truth_count += boxes["fbox"].size();
+    }
+
+    auto result = d->Detect(image);
+    EXPECT_NEAR(result.size(), ground_truth_count, 200);
+  }
+}
