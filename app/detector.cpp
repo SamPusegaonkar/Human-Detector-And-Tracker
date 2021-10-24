@@ -15,12 +15,7 @@
 #include "../include/camera.h"
 #include "../include/detector.h"
 
-/**
- * @brief Load the human detection model.
- * @param file_name 
- * @return true If the file is present & valid
- * @return false If the file is not present or valid 
- */
+
 bool Detector::LoadModel(const std::string& file_name) {
   std::string model_file_binary = file_name + ".caffemodel";
   std::string model_file_text = file_name + ".prototxt";
@@ -28,11 +23,7 @@ bool Detector::LoadModel(const std::string& file_name) {
   return std::ifstream(model_file_binary) && std::ifstream(model_file_text);
 }
 
-/**
- * @brief A method to run detect humans using mobilenet.
- * @param img 
- * @return std::vector<std::vector<double>> 
- */
+
 std::vector<std::vector<double>> Detector::Detect(cv::Mat img) {
   // Gets all the bounding boxes
   auto detections = this->GetBoundingBoxes(img);
@@ -70,12 +61,7 @@ std::vector<std::vector<double>> Detector::Detect(cv::Mat img) {
   return positions;
 }
 
-/**
- * @brief Creates an Obstacle instance for each obstacle detected.
- * @param coordinstart webcam &ates Bounding box coordinates to be used in 
- * calculating the obstacle position in the Camera frame.
- * @return std::vector<Obstacle> A vector of Obstacle instances.
- */
+
 std::vector<std::vector<int>> Detector::GetBoundingBoxes(cv::Mat img) {
   auto model =
     cv::dnn::readNetFromCaffe(this->model_file_ + ".prototxt",

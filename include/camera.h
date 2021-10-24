@@ -14,6 +14,9 @@
 #include <iostream>
 #include <vector>
 
+/**
+ * @brief A class to define all camera paramters.
+ */
 class Camera {
  private:
   int fps_;
@@ -22,6 +25,9 @@ class Camera {
   std::vector<std::vector<double> > transformation_matrix_;
 
  public:
+  /**
+   * @brief Construct a new Camera object & fill it with camera parameters
+   */
   Camera() :
 // Transformation matrix to go from camera to robot frame
   transformation_matrix_ {
