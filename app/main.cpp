@@ -32,12 +32,13 @@ int main() {
   while (true) {
     cap >> img;
     auto robot_coordinates = d->Detect(img);
-
+    std::cout << "---\n";
     for ( auto robot_coordinate : robot_coordinates ) {
       std::cout << "(" << robot_coordinate[0] << ", "
-        << robot_coordinate[1] << ")" << std::endl;
+        << robot_coordinate[1] << ") ";
     }
 
+    std::cout << "\n---\n";
     cv::imshow("Video feed from Medibot", img);
 
     int k = cv::waitKey(10);
