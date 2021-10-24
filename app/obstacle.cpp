@@ -67,7 +67,7 @@ std::vector<double> Obstacle::GetRobotFrameCoordinates(
         {1}};
 
     Eigen::MatrixXd transform(4, 4);
-    for (int i = 0; i < transformation_matrix.size(); ++i)
+    for (unsigned int i = 0; i < transformation_matrix.size(); ++i)
         transform.row(i) = Eigen::VectorXd::Map(&transformation_matrix[i][0],
             transformation_matrix[0].size());
 
@@ -78,24 +78,3 @@ std::vector<double> Obstacle::GetRobotFrameCoordinates(
 
     return pos_in_rframe;
 }
-
-// int main() {
-//     std::vector<std::vector<double> > transformation_matrix{
-//         {0.0, 0.0, -1.0, 0.5},
-//         {-1.0, 0.0, 0.0, 0.0},
-//         {0.0, -1.0, 0.0, 0.5},
-//         {0.0, 0.0, 0.0, 1.0}};
-
-//     float focal_length{0.00367};
-//     float horizontal_fov{1.0472};  // 60 deg in Radians
-//     Obstacle o;
-//     // o.SetObstacleHeight(1312*2);
-//     // o.SetObstacleWidth(1260*2);
-//     // o.ComputeDepth(focal_length);
-//     o.ComputeHorizontalPosition(horizontal_fov);
-//     // std::cout << o.getDepth() << std::endl;
-//     auto pos = o.GetRobotFrameCoordinates(transformation_matrix);
-//     std::cout << pos[0] << std::endl;
-//     std::cout << pos[1] << std::endl;
-
-// }

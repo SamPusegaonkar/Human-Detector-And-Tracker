@@ -29,7 +29,7 @@ TEST(Obstacle_Test, position_in_robot_frame) {
     std::vector<double> pos = pos_test_obstacle.GetRobotFrameCoordinates(
         transformation_matrix);
 
-    for (int i = 0; i < pos.size(); i++) {
+    for (unsigned int i = 0; i < pos.size(); i++) {
         EXPECT_DOUBLE_EQ(expected_pos[i], pos[i]);
     }
 }
@@ -62,7 +62,7 @@ TEST(Obstacle_test, camera_depth_pos) {
         {1293, 615},
         {1005, 360}};
 
-    for (int i = 0; i < positions.size(); i++) {
+    for (unsigned int i = 0; i < positions.size(); i++) {
         std::vector<float> expected_pos = positions[i];
         std::vector<float> box = bounding_boxes[i];
 
@@ -76,7 +76,7 @@ TEST(Obstacle_test, camera_depth_pos) {
         std::vector<double> pos = pos_test_obstacle.GetRobotFrameCoordinates(
             transformation_matrix);
 
-        for (int j = 0; j < pos.size(); j++) {
+        for (unsigned int j = 0; j < pos.size(); j++) {
             EXPECT_NEAR(expected_pos[j], pos[j], 20);
         }
     }

@@ -39,7 +39,7 @@ std::vector<std::vector<double>> Detector::Detect(cv::Mat img) {
   auto obstacles = this->DefineObstacles(detections);
   std::vector<std::vector<double>> positions;
 
-  for (auto i = 0; i < detections.size(); i++) {
+  for (unsigned int i = 0; i < detections.size(); i++) {
     auto obstacle = obstacles[i];
     auto detection = detections[i];
 
@@ -125,7 +125,7 @@ std::vector<Obstacle> Detector::DefineObstacles(
   std::vector<std::vector<int>> coordinates) {
   std::vector<Obstacle> obstacles(coordinates.size());
 
-  for (int i = 0; i < obstacles.size(); i++) {
+  for (unsigned int i = 0; i < obstacles.size(); i++) {
     auto coordinate = coordinates[i];
     int box_width = coordinate[2];
     int box_height = coordinate[3];
