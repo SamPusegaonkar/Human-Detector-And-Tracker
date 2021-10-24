@@ -58,7 +58,7 @@ void Obstacle::ComputeHorizontalPosition(float horizontal_fov) {
  * @return std::vector<float> Detected Obstacle.
  */
 std::vector<double> Obstacle::GetRobotFrameCoordinates(
-        std::vector<std::vector< double> > &transformation_matrix) {
+        const std::vector<std::vector< double> > &transformation_matrix) {
     // Position of Obstacle in Camera frame
     Eigen::Matrix<double, 4, 1> position{
         {camera_x_position_},
