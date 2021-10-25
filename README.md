@@ -1,7 +1,7 @@
 # Human-Detector-And-Tracker
 
-[![Build Status](https://app.travis-ci.com/SamPusegaonkar/Human-Detector-And-Tracker.svg?branch=main)](https://app.travis-ci.com/SamPusegaonkar/Human-Detector-And-Tracker)
-[![Coverage Status](https://coveralls.io/repos/github/SamPusegaonkar/Human-Detector-And-Tracker/badge.svg?branch=main)](https://coveralls.io/github/SamPusegaonkar/Human-Detector-And-Tracker?branch=main)
+[![Build Status](https://app.travis-ci.com/ShonBC/Human-Detector-And-Tracker.svg?branch=main)](https://app.travis-ci.com/ShonBC/Human-Detector-And-Tracker)
+[![Coverage Status](https://coveralls.io/repos/github/ShonBC/Human-Detector-And-Tracker/badge.svg?branch=main)](https://coveralls.io/github/ShonBC/Human-Detector-And-Tracker?branch=main)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 
 
@@ -25,6 +25,12 @@ A 2 Page Written proposal can be found [here](https://github.com/SamPusegaonkar/
 # Phase 1
 ## Update Video for the project:
 Video can be found [here.](https://youtu.be/4Fnji_aOBQk)
+***
+
+***
+# Phase 2
+## Final Update Video for the project:
+Video can be found [here.](https://www.youtube.com/watch?v=hwkFJIDCIOQ)
 
 ## Product Backlog:
 All backlog is being tracked [here.](https://docs.google.com/spreadsheets/d/1d91Km6jjr7IpjPjCiHpYYn6EU4wXOL3bwWk6Ny9Gc3k/edit#gid=0)
