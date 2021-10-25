@@ -1,7 +1,7 @@
 # Human-Detector-And-Tracker
 
-[![Build Status](https://app.travis-ci.com/SamPusegaonkar/Human-Detector-And-Tracker.svg?branch=main)](https://app.travis-ci.com/SamPusegaonkar/Human-Detector-And-Tracker)
-[![Coverage Status](https://coveralls.io/repos/github/SamPusegaonkar/Human-Detector-And-Tracker/badge.svg?branch=main)](https://coveralls.io/github/SamPusegaonkar/Human-Detector-And-Tracker?branch=main)
+[![Build Status](https://app.travis-ci.com/ShonBC/Human-Detector-And-Tracker.svg?branch=main)](https://app.travis-ci.com/ShonBC/Human-Detector-And-Tracker)
+[![Coverage Status](https://coveralls.io/repos/github/ShonBC/Human-Detector-And-Tracker/badge.svg?branch=main)](https://coveralls.io/github/ShonBC/Human-Detector-And-Tracker?branch=main)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 
 
@@ -25,6 +25,12 @@ A 2 Page Written proposal can be found [here](https://github.com/SamPusegaonkar/
 # Phase 1
 ## Update Video for the project:
 Video can be found [here.](https://youtu.be/4Fnji_aOBQk)
+***
+
+***
+# Phase 2
+## Final Update Video for the project:
+Video can be found [here.](https://www.youtube.com/watch?v=hwkFJIDCIOQ)
 
 ## Product Backlog:
 All backlog is being tracked [here.](https://docs.google.com/spreadsheets/d/1d91Km6jjr7IpjPjCiHpYYn6EU4wXOL3bwWk6Ny9Gc3k/edit#gid=0)
@@ -32,6 +38,51 @@ All backlog is being tracked [here.](https://docs.google.com/spreadsheets/d/1d91
 ## Iteration Planning Meetings & Scrum Meeting Notes:
 Can be found [here.](https://docs.google.com/document/u/5/d/1nzskLJN1WSXA-vDnfdTdaYm-gOQvoOS33DXtdwem0go/edit#heading=h.qk4i5j7fr8g4)
 ***
+
+## Build and Run Instructions:
+Clone repo:
+
+    git clone https://github.com/SamPusegaonkar/Human-Detector-And-Tracker
+
+Download Dependencies:
+
+    chmod +x dependencies.sh
+    ./dependencies.sh
+
+Download model files:
+
+    chmod +x download_model_files.sh
+    ./download_model_files.sh
+
+Build with coverage on or off:
+
+    chmod +x build_with_coverage.sh
+    ./build_with_coverage.sh
+
+    or
+
+    chmod +x build_coverage_off.sh
+    ./build_coverage_off.sh
+
+Run the main file to demo the API in use:
+
+    cd build
+    ./app/shell-app
+
+Generate cppcheck, cpplint and valgrind results and store in a text file in /results directory:
+
+    chmod +x run_cpplint.sh
+    ./run_cpplint.sh
+
+    chmod +x run_cppcheck.sh
+    ./run_cppcheck.sh
+
+    chmod +x run_valgrind.sh
+    ./run_valgrind.sh
+
+Generate Doxygen files:
+
+    doxygen Doxyfile
 
 # Introduction: 
 MediBot: A 4 wheeled mobile robot developed by Acme Robotics has become an essential part of all hospitals across the state. This robot travels through hallways to deliver medicines reliably to their patients. Given the drastic increase in the number of patients, nurses, doctors during pandemics & flu seasons [[1](https://ourworldindata.org/covid-hospitalizations),[2](https://www.cdc.gov/coronavirus/2019-ncov/covid-data/covidview/index.html)] this robot needs to make sure that it doesn’t get obstructed by any humans when it travels through the hallways.
@@ -61,9 +112,9 @@ An initial UML activity and class diagram, [Fig. 3, 4], has been made outlining 
 <p align = "center">
 
 
-<img src="./UML/revised/ClassDiagram.png" alt="Logo"/>
+<img src="./UML/revised10_24_2021/ClassDiagram.png" alt="Logo"/>
 
-<img src="./UML/revised/ActivityDiagram.png" alt="Logo"/>
+<img src="./UML/revised10_24_2021/ActivityDiagram.png" alt="Logo"/>
 
 <p align = "center"><em>Figure 3. Class Diagram - On the left</em>
 
@@ -78,7 +129,7 @@ Testing will be done on the entire codebase. This includes unit testing, integra
 A potential flaw that could come up is that because of the constraint of a monocular camera, a large tolerance in position will be noticeable due to the use of the average height of humans. Variations in lighting conditions can also cause errors in position estimation as well as increase the difficulty in obstacle detection. Ideally, depth estimation would be done with a stereo vision system using two cameras. In this application, we are restricted to a singular monocular camera system which may increase our margin of error as well. Our timeline is ambitious given we are a small team and will be working under short sprints. 
 
 # Technical Process:
-To get the location information of humans, we will be utilizing a pre-trained model called mobilenet[[5](https://arxiv.org/abs/1704.04861)] which will allow us to get bounding boxes for detected objects. MobileNet is based on a streamlined architecture that uses depth-wise separable convolutions to build lightweight deep neural networks[[5](https://arxiv.org/abs/1704.04861)]. Because of the constraints of the robot hardware, mobile net was picked as it achieves comparable results to other networks like RCNN, Faster CNN with only a fraction of computationally complexity and model size[[5](https://arxiv.org/abs/1704.04861)]. This model outputs the bounding boxes for N>=1 humans. A correlation filter will be used to track each and every one of these instances of humans using DLib[[6](http://dlib.net/imaging.html)].
+To get the location information of humans, we will be utilizing a pre-trained model called mobilenet[[5](https://arxiv.org/abs/1704.04861)] which will allow us to get bounding boxes for detected objects. MobileNet is based on a streamlined architecture that uses depth-wise separable convolutions to build lightweight deep neural networks[[5](https://arxiv.org/abs/1704.04861)]. Because of the constraints of the robot hardware, mobile net was picked as it achieves comparable results to other networks like RCNN, Faster CNN with only a fraction of computationally complexity and model size[[5](https://arxiv.org/abs/1704.04861)]. This model outputs the bounding boxes for N>=1 humans.
 Once that information has been obtained in the camera’s reference frame, this information could be transformed into the robot's reference frame. This process is done by computing a similarity triangle. Since we are aware of the focal length, field of view of the camera, and the width and height of the humans in pixels, this information can be converted into the x coordinate for the robot which is the z coordinate for the camera frame. Using the depth information, we can determine the human’s y position (horizontal position in the camera frame) by mapping horizontal pixel locations to physical horizontal positions. While this is an estimation for the actual x and y coordinates, the method is robust for the purposes of Acme’s Medibot.
 
 <p align = "center">
@@ -93,7 +144,6 @@ Once that information has been obtained in the camera’s reference frame, this 
 - C++ 11 & (above features)[[7](https://isocpp.org/)] will be the primary language for the entire codebase. 
 - We will be utilizing Cmake 3.2.1 & Above [[8](https://cmake.org/)] for our build system. 
 - For processing our video input, OpenCV 4.5.3 (Apache 2 license)[[9](ttps://github.com/opencv/opencv)]will be used.
-- DLib 19.22 (Boost Software License - Open Source)[[6](http://dlib.net/imaging.html)] for implementing the tracking functionality. 
 - MobileNet [[5](https://arxiv.org/abs/1704.04861)] Configuration Files.
 - Eigan 3.4 (MPL2 License) [[10](http://eigen.tuxfamily.org/index.php?title=Main_Page#License)] used for liner algebra implementation.
 - JSONCPP [[11](https://github.com/open-source-parsers/jsoncpp)] to parse the configuration information for the test data & get the bounding boxes.
@@ -104,6 +154,7 @@ At the end of this contract, Acme Robotics will receive a well-documented & full
 # Known Issues (so far)
 ```
 1. Failed to load module "canberra-gtk-module". 
+2. Position calculation is incorrect.
 ```
 Issue occurs using the .detect method from the Detector class. 
 
