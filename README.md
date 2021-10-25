@@ -84,6 +84,9 @@ Generate Doxygen files:
 
     doxygen Doxyfile
 
+# Example Output:
+<p align="center"> <img src="https://user-images.githubusercontent.com/12711480/138729828-07109c32-254d-4679-91b4-b55214960325.gif" alt="Logo"/> </p> 
+
 # Introduction: 
 MediBot: A 4 wheeled mobile robot developed by Acme Robotics has become an essential part of all hospitals across the state. This robot travels through hallways to deliver medicines reliably to their patients. Given the drastic increase in the number of patients, nurses, doctors during pandemics & flu seasons [[1](https://ourworldindata.org/covid-hospitalizations),[2](https://www.cdc.gov/coronavirus/2019-ncov/covid-data/covidview/index.html)] this robot needs to make sure that it doesn’t get obstructed by any humans when it travels through the hallways.
 
