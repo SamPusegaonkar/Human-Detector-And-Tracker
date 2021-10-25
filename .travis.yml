@@ -22,7 +22,6 @@ matrix:
 
 before_script:
 # For OpenCV installation
-  - cd ..
   - git clone https://github.com/opencv/opencv.git
   - cd opencv
   - git checkout 4.0.0
@@ -50,8 +49,6 @@ before_script:
   # Install Json.cpp
   - sudo apt-get install libjsoncpp-dev
 
-  - cd Human-Detector-and-Tracker
-
 before_install:
   - pip install --user cpp-coveralls
 
@@ -70,7 +67,7 @@ script:
   - test/cpp-test
 
 after_success:
-  - coveralls --root .. -E ".*external.*" -E ".*CMakeFiles.*" -E ".*test/.*.cpp.*"
+  - coveralls --root .. -E ".*external.*" -E ".*CMakeFiles.*" -E ".*test/.*.cpp.*" -E".*app/main.cpp" -E".*opencv*" -E".*opencv_contrib*"
 
 notifications:
   email: false
